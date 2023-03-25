@@ -2,38 +2,51 @@ import Qrcode from "@/components/Qrcode";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store";
-import { phoneUpdate, qrSuccess } from "@/redux/reservationSlice";
-
-const host = process.env.REACT_APP_BACKEND_URL;
+import { setTable, setPhone } from "@/redux/reservationSlice";
+import { useRouter } from "next/router";
 
 const booktable = () => {
+  const host = process.env.NEXT_PUBLIC_BACKEND_URL;
+  const port = process.env.NEXT_PUBLIC_BACKEND_PORT;
+
   const reservation = useSelector((state: RootState) => state.reservation);
   const dispatch = useDispatch();
-  const [output, setoutput] = useState(0); // using state to keep the output of the qrcode component streamlined for reuse
+  const router = useRouter();
+  const [output, setoutput]: any = useState(); // using state to keep the output of the qrcode component streamlined for reuse
 
   const handleUpdate = (event: any): void => {
-    dispatch(phoneUpdate(event.target.value));
+    dispatch(setPhone(event.target.value));
   };
 
-  const handleClick = () => {};
-  const bookTable = async (url = `${host}/api/table/book`) => {
+  const handleClick = async () => {
+    const url: string = `${host}:${port}/api/table/book/`;
+    console.log("yo: ", url);
     const response = await fetch(url, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        tableNo: reservation.table,
+        table: reservation.table,
         phone: reservation.phone,
       }),
     });
-    let { authToken } = await response.json();
-    localStorage.setItem("authToken", authToken);
+    let data = await response.json();
+    if ("authToken" in data) {
+      localStorage.setItem("authToken", data.authToken);
+      router.push("/");
+    }
   };
 
   useEffect(() => {
-    dispatch(qrSuccess(output));
-  });
+    const authToken = localStorage.getItem("authToken");
+    authToken ? router.push("/") : null;
+    if (output) {
+      let qrData = JSON.parse(output);
+      console.log(qrData.table);
+      dispatch(setTable(qrData.table));
+    }
+  }, [output]);
 
   if (!output)
     // Rendering qrSanner component if not scanner already
@@ -50,9 +63,9 @@ const booktable = () => {
   else
     return (
       <>
-        {output ? <div>Table :{output}</div> : null}
+        {output.table ? <div>Table :{output.table}</div> : null}
         <input type="text" onChange={handleUpdate} />
-        <button onClick={handleClick} />
+        <button onClick={handleClick}>Book</button>
       </>
     );
 };

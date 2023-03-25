@@ -33,20 +33,18 @@ const createConfig = (props: any) => {
 const Qrcode = (props: any) => {
   const config = createConfig(props);
   let cameraId = { facingMode: "user" };
-  let output = 0;
+  let output: any = {};
   let qrScanner: any;
 
   const onSuccess = async (decodedText: any, decodedResult: any) => {
     // Handeling output when qrCode scan is successful
-    qrScanner
-      .stop()
-      .then((ignore: any) => {
-        output = parseInt(decodedText);
-        props.output(output);
-      })
-      .catch((error: any) => {
-        console.log(error);
-      });
+    try {
+      let ignore = await qrScanner.stop();
+      output = decodedText;
+      props.output(output); // Setting the state with output (qrContent), passed as props from the parent component
+    } catch (error: any) {
+      console.log(error);
+    }
   };
 
   const onError = (errorMessage: string): any => {
