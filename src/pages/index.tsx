@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import Qrcode from "@/components/Qrcode";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,13 +12,6 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="App">
-        <Qrcode
-          fps={10}
-          qrbox={{ width: 250, height: 250 }}
-          disableFlip={false}
-        />
-      </div>
     </>
   );
 }

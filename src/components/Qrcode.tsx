@@ -1,6 +1,5 @@
 import { Html5Qrcode } from "html5-qrcode";
-import { useEffect, useState } from "react";
-
+import { useEffect } from "react";
 
 const qrcodeDivId = "qrbox";
 // Creates the configuration object for qrScanner.
@@ -31,30 +30,34 @@ const createConfig = (props: any) => {
   return config;
 };
 
-
-
 const Qrcode = (props: any) => {
+  const config = createConfig(props);
   let cameraId = { facingMode: "user" };
-  const [qrContents, setqrContents] = useState<any>();
-    
+  let output = 0;
+  let qrScanner: any;
+
+  const onSuccess = async (decodedText: any, decodedResult: any) => {
+    // Handeling output when qrCode scan is successful
+    qrScanner
+      .stop()
+      .then((ignore: any) => {
+        output = parseInt(decodedText);
+        props.output(output);
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  };
+
+  const onError = (errorMessage: string): any => {
+    // console.error(errorMessage)
+  };
+
   useEffect(() => {
-    setqrContents(localStorage.getItem("qrContents"))
-    const config = createConfig(props);
-    const qrScanner = new Html5Qrcode(qrcodeDivId);
-
-    const onSuccess = async (decodedText: any, decodedResult: any) => {
-      setqrContents(decodedText)
-      localStorage.setItem("qrContents", qrContents)
-      qrScanner.stop()
-    };
-
-    const onError = (errorMessage: string): any => {
-      // console.error(errorMessage)
-    };
-
+    qrScanner = new Html5Qrcode(qrcodeDivId);
     qrScanner
       .start(cameraId, config, onSuccess, onError)
-      .catch((error) => {
+      .catch((error: any) => {
         console.log(error);
       });
 
@@ -68,11 +71,11 @@ const Qrcode = (props: any) => {
     };
   }, []);
 
-  return <>
-  <div id={qrcodeDivId} style={{ width: "300px" }} />
-  {(qrContents!=='undefined')? (<div>{qrContents}</div>) : null}
-  {/* {console.log(qrContents)} */}
-  </>
+  return (
+    <>
+      <div id={qrcodeDivId} style={{ width: "300px" }} />
+    </>
+  );
 };
 
 export default Qrcode;
