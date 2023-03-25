@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store";
 import { phoneUpdate, qrSuccess } from "@/redux/reservationSlice";
 
-// const host = process.env.REACT_APP_BACKEND_URL;
+const host = process.env.REACT_APP_BACKEND_URL;
 
 const booktable = () => {
   const reservation = useSelector((state: RootState) => state.reservation);
@@ -15,21 +15,21 @@ const booktable = () => {
     dispatch(phoneUpdate(event.target.value));
   };
 
-  // const handleClick = () => {};
-  // const bookTable = async (url = `${host}/api/table/book`) => {
-  //   const response = await fetch(url, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       tableNo: reservation.table,
-  //       phone: reservation.phone,
-  //     }),
-  //   });
-  //   let { authToken } = await response.json();
-  //   localStorage.setItem("authToken", authToken);
-  // };
+  const handleClick = () => {};
+  const bookTable = async (url = `${host}/api/table/book`) => {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tableNo: reservation.table,
+        phone: reservation.phone,
+      }),
+    });
+    let { authToken } = await response.json();
+    localStorage.setItem("authToken", authToken);
+  };
 
   useEffect(() => {
     dispatch(qrSuccess(output));
@@ -50,10 +50,9 @@ const booktable = () => {
   else
     return (
       <>
-        Hello
         {output ? <div>Table :{output}</div> : null}
         <input type="text" onChange={handleUpdate} />
-        {/* <button onClick={handleClick} /> */}
+        <button onClick={handleClick} />
       </>
     );
 };
