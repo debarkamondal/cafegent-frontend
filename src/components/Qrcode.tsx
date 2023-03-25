@@ -1,3 +1,6 @@
+/**
+ * ! Must pass output state from the parent component.
+ */
 import { Html5Qrcode } from "html5-qrcode";
 import { useEffect } from "react";
 
@@ -40,8 +43,9 @@ const Qrcode = (props: any) => {
     // Handeling output when qrCode scan is successful
     try {
       let ignore = await qrScanner.stop();
+      qrScanner.clear();
       output = decodedText;
-      props.output(output); // Setting the state with output (qrContent), passed as props from the parent component
+      props.setoutput(output); // Setting the state with output (qrContent), passed as props from the parent component
     } catch (error: any) {
       console.log(error);
     }
@@ -58,15 +62,6 @@ const Qrcode = (props: any) => {
       .catch((error: any) => {
         console.log(error);
       });
-
-    // cleanup function when component will unmount
-    return () => {
-      try {
-        qrScanner.clear();
-      } catch (error: any) {
-        console.error("Failed to clear qrScanner. ", error);
-      }
-    };
   }, []);
 
   return (

@@ -5,7 +5,7 @@ import { RootState } from "@/store";
 import { setTable, setPhone } from "@/redux/reservationSlice";
 import { useRouter } from "next/router";
 
-const booktable = () => {
+const BookTable = () => {
   const host = process.env.NEXT_PUBLIC_BACKEND_URL;
   const port = process.env.NEXT_PUBLIC_BACKEND_PORT;
 
@@ -20,7 +20,6 @@ const booktable = () => {
 
   const handleClick = async () => {
     const url: string = `${host}:${port}/api/table/book/`;
-    console.log("yo: ", url);
     const response = await fetch(url, {
       method: "PUT",
       headers: {
@@ -42,9 +41,8 @@ const booktable = () => {
     const authToken = localStorage.getItem("authToken");
     authToken ? router.push("/") : null;
     if (output) {
-      let qrData = JSON.parse(output);
-      console.log(qrData.table);
-      dispatch(setTable(qrData.table));
+      let qrContent = JSON.parse(output);
+      dispatch(setTable(qrContent.table));
     }
   }, [output]);
 
@@ -56,18 +54,19 @@ const booktable = () => {
           fps={10}
           qrbox={{ width: 250, height: 250 }}
           disableFlip={false}
-          output={setoutput}
+          output={output}
+          setoutput={setoutput}
         />
       </div>
     );
   else
     return (
       <>
-        {output.table ? <div>Table :{output.table}</div> : null}
+        <div>Table :{JSON.parse(output).table}</div>
         <input type="text" onChange={handleUpdate} />
         <button onClick={handleClick}>Book</button>
       </>
     );
 };
 
-export default booktable;
+export default BookTable;
