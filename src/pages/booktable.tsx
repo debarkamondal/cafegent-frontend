@@ -46,25 +46,44 @@ const BookTable = () => {
     }
   }, [output]);
 
+  // Rendering qrSanner component if not scanned already
   if (!output)
-    // Rendering qrSanner component if not scanner already
     return (
-      <div>
-        <Qrcode
-          fps={10}
-          qrbox={{ width: 250, height: 250 }}
-          disableFlip={false}
-          output={output}
-          setoutput={setoutput}
-        />
-      </div>
+      <>
+        <h1 className="m-8 p-4 text-center text-4xl font-bold">Book a Table</h1>
+        <div className="flex m-auto p-4 justify-evenly w-96 ">
+          <div className="bg-red-400 border-4 rounded-full w-12 h-12 flex align-middle">
+            <div className="m-auto">1</div>
+          </div>
+          <hr className="border-t-2 border-dashed border-black w-20 mt-5" />
+          <div className="bg-red-400 border-4 rounded-full w-12 h-12 flex align-middle">
+            <div className="m-auto">2</div>
+          </div>
+        </div>
+        <div className="m-auto w-max">
+          <Qrcode
+            className="rounded-md"
+            fps={10}
+            qrbox={{ width: 250, height: 250 }}
+            disableFlip={false}
+            output={output}
+            setoutput={setoutput}
+          />
+        </div>
+        <div className="text-center flex flex-col justify-center h-60">
+          <h2 className="text-2xl mb-4">Step: X</h2>
+          <p className="text-xl">scan the QR code on the table to book</p>
+        </div>
+        <div className="bg-green-400 rounded-full absolute bottom-0 w-11/12 m-4 h-14 z-10"></div>
+      </>
     );
+  // Rendering the scanned table no and text feild for phone number input
   else
     return (
       <>
-        <div>Table :{JSON.parse(output).table}</div>
+        {/* <div>Table :{JSON.parse(output).table}</div>
         <input type="text" onChange={handleUpdate} />
-        <button onClick={handleClick}>Book</button>
+        <button onClick={handleClick}>Book</button> */}
       </>
     );
 };

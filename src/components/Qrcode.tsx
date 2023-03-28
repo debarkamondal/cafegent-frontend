@@ -1,10 +1,12 @@
 /**
- * ! Must pass output state from the parent component.
+ * ! Must pass state from the parent component to get output.
+ * @param output is a state passed from the parent component to get the result of the qr for post processting
  */
 import { Html5Qrcode } from "html5-qrcode";
 import { useEffect } from "react";
 
 const qrcodeDivId = "qrbox";
+
 // Creates the configuration object for qrScanner.
 const createConfig = (props: any) => {
   const config: {
@@ -36,13 +38,13 @@ const createConfig = (props: any) => {
 const Qrcode = (props: any) => {
   const config = createConfig(props);
   let cameraId = { facingMode: "user" };
-  let output: any = {};
   let qrScanner: any;
+  let output: any = {};
 
+  // Handeling output when qrCode scan is successful
   const onSuccess = async (decodedText: any, decodedResult: any) => {
-    // Handeling output when qrCode scan is successful
     try {
-      let ignore = await qrScanner.stop();
+      await qrScanner.stop();
       qrScanner.clear();
       output = decodedText;
       props.setoutput(output); // Setting the state with output (qrContent), passed as props from the parent component
