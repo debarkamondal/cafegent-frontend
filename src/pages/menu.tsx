@@ -1,3 +1,4 @@
+import MenuItem from '@/components/MenuItem';
 import React from 'react'
 const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 const port = process.env.NEXT_PUBLIC_BACKEND_PORT;
@@ -6,7 +7,15 @@ const menu = (props: object) => {
 
     ("data" in props)? console.log("hey"):null
   return (
-    <div></div>
+    <div className='md:grid m-4 gap-4 grid-cols-4 h-full'>
+        <MenuItem />
+        <MenuItem />
+        <MenuItem />
+        <MenuItem />
+        <MenuItem />
+        <MenuItem />
+        <MenuItem />
+    </div>
   )
 }
 
