@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 
-const MenuItem = () => {
+const MenuItem = (props: any) => {
 	return (
-		<div className="menuitem my-4 p-2 drop-shadow-lg bg-slate-200 w-full rounded-xl overflow-hidden">
+		<div className="menuitem my-4 drop-shadow-lg bg-white w-full rounded-xl overflow-hidden">
 			<Image
 				className="rounded-xl h-72 md:h-44 justify-start m-auto object-cover"
 				src="/assets/tandoori-chicken.jpg"
@@ -13,15 +13,15 @@ const MenuItem = () => {
 			/>
 			<div>
 				<div className="itemName w-11/12 mt-2 rounded-xl underline text-center text-xl font-semibold">
-					Tandoori Chicken
+					{props.name}
 				</div>
 				<p className="p-2 text-justify">
 					Tender Chicken marinated wtih special sauce and then roasted on
 					traditional tandoor. Enjoy the smoky, spicy and juicy chicken
 					tandoori.
 				</p>
-				<span className="pl-2 font-medium">Pieces:</span>
-				<span> 1 | </span>
+				<span className="pl-2 font-medium">Pieces :</span>
+				<span> {props.pieces} | </span>
 				<span className="font-medium">Non-Veg</span>
 				<hr className="invisible" />
 				<div className="flex mt-4 items-center float-left">
@@ -96,7 +96,7 @@ const MenuItem = () => {
 					</button>
 				</div>
 				<span className="float-right mt-4 p-2 text-lg font-medium">
-					&#8377; 300
+					&#8377; {props.price}
 				</span>
 			</div>
 		</div>
