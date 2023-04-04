@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import reservationSlice from "./redux/reservationSlice";
+import cartSlice from "./redux/cartSlice";
 
 export const store = configureStore({
-  reducer: {
-    reservation: reservationSlice,
-  },
+	reducer: {
+		reservation: reservationSlice,
+		cart: cartSlice,
+	},
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

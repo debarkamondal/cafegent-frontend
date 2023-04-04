@@ -1,8 +1,13 @@
 import Image from "next/image";
 import React from "react";
 import { BiCaretUpSquare } from "react-icons/bi";
+
 const MenuItemAlt = (props: any) => {
 	let name = props.name;
+	let handleClick = (event) => {
+		console.log(props.key);
+	};
+
 	return (
 		<div className="flex align-middle menuitem my-3 p-4 h-52 drop-shadow-xl bg-white w-full rounded-xl">
 			<div className="w-4/6 flex flex-col justify-around text-xs">
@@ -26,7 +31,10 @@ const MenuItemAlt = (props: any) => {
 					width={500}
 					height={200}
 				/>
-				<button className="bg-green-500 text-white p-1 m-2 w-28 rounded-lg">
+				<button
+					className="bg-green-500 text-white p-1 m-2 w-28 rounded-lg"
+					onClick={handleClick}
+				>
 					Add
 				</button>
 			</div>
