@@ -12,13 +12,13 @@ const menu = (props: object) => {
 	return (
 		<div className="m-4 gap-4 md:grid md:grid-cols-3 lg:grid-cols-4 h-full ">
 			<MenuItemAlt
-				key={12345678}
+				_id={12345678}
 				name="Tandoori Chicken"
 				pieces="2"
 				price="300"
 			/>
 			<MenuItemAlt
-				key={123456789}
+				_id={123456789}
 				name="Tandoori Chicken"
 				pieces="2"
 				price="300"

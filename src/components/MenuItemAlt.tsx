@@ -1,15 +1,11 @@
 import Image from "next/image";
 import React from "react";
 import { BiCaretUpSquare } from "react-icons/bi";
+import AddToCartButton from "./AddToCartButton";
 
 const MenuItemAlt = (props: any) => {
-	let name = props.name;
-	let handleClick = (event) => {
-		console.log(props.key);
-	};
-
 	return (
-		<div className="flex align-middle menuitem my-3 p-4 h-52 drop-shadow-xl bg-white w-full rounded-xl">
+		<div className="flex align-middle menuitem my-3 p-4 h-52 overflow-hidden drop-shadow-xl bg-white w-full rounded-xl">
 			<div className="w-4/6 flex flex-col justify-around text-xs">
 				<span className="veg-nonveg-icon text-xl text-red-600">
 					<BiCaretUpSquare />
@@ -31,12 +27,7 @@ const MenuItemAlt = (props: any) => {
 					width={500}
 					height={200}
 				/>
-				<button
-					className="bg-green-500 text-white p-1 m-2 w-28 rounded-lg"
-					onClick={handleClick}
-				>
-					Add
-				</button>
+				<AddToCartButton id={props._id} />
 			</div>
 		</div>
 	);
