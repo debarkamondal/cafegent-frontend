@@ -1,28 +1,32 @@
 // import MenuItem from "@/components/MenuItem";
-import MenuItemAlt from "@/components/MenuItemAlt";
+import MenuItemAlt from "@/components/menuItem/MenuItemAlt";
+import { useEffect } from "react";
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addToCart } from "@/redux/cartSlice";
 
 const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 const port = process.env.NEXT_PUBLIC_BACKEND_PORT;
 
-const menu = (props: object) => {
-	"data" in props ? console.log("hey") : null;
+interface props {
+	data: Array<object>;
+}
+
+const menu = (props: props) => {
 	return (
 		<div className="m-4 gap-4 md:grid md:grid-cols-3 lg:grid-cols-4 h-full ">
-			<MenuItemAlt
-				_id={12345678}
-				name="Tandoori Chicken"
-				pieces="2"
-				price="300"
-			/>
-			<MenuItemAlt
-				_id={123456789}
-				name="Tandoori Chicken"
-				pieces="2"
-				price="300"
-			/>
+			{props.data.map((element: any) => {
+				return (
+					<MenuItemAlt
+						key={element._id}
+						_id={element._id}
+						name={element.name}
+						// pieces="2"
+						price={element.price}
+						tag={element.tag}
+						description={element.description}
+						image={element.image}
+					/>
+				);
+			})}
 		</div>
 	);
 };

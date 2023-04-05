@@ -12,7 +12,7 @@ const BookTable = () => {
 	const reservation = useSelector((state: RootState) => state.reservation);
 	const dispatch = useDispatch();
 	const router = useRouter();
-	const [output, setoutput]: any = useState("{\"table\":1}"); // using state to keep the output of the qrcode component streamlined for reuse
+	const [output, setoutput]: any = useState('{"table":1}'); // using state to keep the output of the qrcode component streamlined for reuse
 
 	const handleUpdate = (event: any): void => {
 		dispatch(setPhone(event.target.value));
@@ -33,13 +33,13 @@ const BookTable = () => {
 		let data = await response.json();
 		if ("authToken" in data) {
 			localStorage.setItem("authToken", data.authToken);
-			router.push("/");
+			router.push("/menu");
 		}
 	};
 
 	useEffect(() => {
 		const authToken = localStorage.getItem("authToken");
-		authToken ? router.push("/") : null;
+		authToken ? router.push("/menu") : null;
 		if (output) {
 			let qrContent = JSON.parse(output);
 			dispatch(setTable(qrContent.table));
@@ -81,19 +81,25 @@ const BookTable = () => {
 				</p>
 			</div>
 			{output ? (
-					<div className="text-lg flex flex-col justify-between text-center">Table : {JSON.parse(output).table}
-					<input className="border-2 mt-6 m-auto w-10/12" type="text" onChange={handleUpdate} placeholder="Enter Phone number"/>
-          </div>
+				<div className="text-lg flex flex-col justify-between text-center">
+					Table : {JSON.parse(output).table}
+					<input
+						className="border-2 mt-6 m-auto w-10/12"
+						type="text"
+						onChange={handleUpdate}
+						placeholder="Enter Phone number"
+					/>
+				</div>
 			) : null}
-      <hr className="invisible"/>
-      <div className="flex justify-center absolute bottom-0 w-full">
-			<button
-				onClick={handleClick}
-				className="bg-green-400 rounded-full w-11/12 m-4 h-14"
-			>
-				Book
-			</button>
-      </div>
+			<br />
+			<div className="flex justify-center absolute bottom-0 w-full">
+				<button
+					onClick={handleClick}
+					className="bg-green-400 rounded-full w-11/12 m-4 h-14"
+				>
+					Book
+				</button>
+			</div>
 		</>
 	);
 	// Rendering the scanned table no and text feild for phone number input
