@@ -43,6 +43,7 @@ const menu = (props: props) => {
 					);
 				})}
 			</div>
+			{/* Showing Checkout Button only when cart it not empty */}
 			{Object.keys(cart).length && <CartChekoutButton />}
 		</>
 	);
