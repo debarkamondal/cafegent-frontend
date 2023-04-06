@@ -43,10 +43,7 @@ const menu = (props: props) => {
 					);
 				})}
 			</div>
-			{Object.keys(cart).length && Object.values(cart)[0] && (
-				<CartChekoutButton />
-			)}
-			{console.log(cart)}
+			{Object.keys(cart).length && <CartChekoutButton />}
 		</>
 	);
 };

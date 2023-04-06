@@ -15,6 +15,7 @@ export const cartSlice = createSlice({
 		removeFromCart: (state, action: PayloadAction<string>) => {
 			let itemId = action.payload;
 			if (state[itemId]) state[itemId]--;
+			if (state[itemId] === 0) delete state[itemId];
 		},
 	},
 });
