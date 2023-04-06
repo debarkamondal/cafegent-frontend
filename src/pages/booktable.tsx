@@ -12,7 +12,7 @@ const BookTable = () => {
 	const reservation = useSelector((state: RootState) => state.reservation);
 	const dispatch = useDispatch();
 	const router = useRouter();
-	const [output, setoutput]: any = useState('{"table":1}'); // using state to keep the output of the qrcode component streamlined for reuse
+	const [output, setoutput]: any = useState(); // using state to keep the output of the qrcode component streamlined for reuse
 
 	const handleUpdate = (event: any): void => {
 		dispatch(setPhone(event.target.value));
@@ -92,7 +92,7 @@ const BookTable = () => {
 				</div>
 			) : null}
 			<br />
-			<div className="flex justify-center absolute bottom-0 w-full">
+			<div className="flex justify-center w-full">
 				<button
 					onClick={handleClick}
 					className="bg-green-400 rounded-full w-11/12 m-4 h-14"

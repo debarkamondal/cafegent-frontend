@@ -1,36 +1,57 @@
 // import MenuItem from "@/components/MenuItem";
 import MenuItemAlt from "@/components/menuItem/MenuItemAlt";
-import { useEffect } from "react";
 import React from "react";
-
+import CartChekoutButton from "@/components/CartChekoutButton";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 const port = process.env.NEXT_PUBLIC_BACKEND_PORT;
 
+//defining proptypes for menuItem
+
 interface props {
-	data: Array<object>;
+	data: [
+		{
+			_id: string;
+			name: string;
+			price: string;
+			tag: string;
+			description: string;
+			image: string;
+		}
+	];
 }
 
 const menu = (props: props) => {
+	const cart = useSelector((state: RootState) => state.cart);
+
 	return (
-		<div className="m-4 gap-4 md:grid md:grid-cols-3 lg:grid-cols-4 h-full ">
-			{props.data.map((element: any) => {
-				return (
-					<MenuItemAlt
-						key={element._id}
-						_id={element._id}
-						name={element.name}
-						// pieces="2"
-						price={element.price}
-						tag={element.tag}
-						description={element.description}
-						image={element.image}
-					/>
-				);
-			})}
-		</div>
+		<>
+			<div className="m-4 gap-4 md:grid md:grid-cols-3 lg:grid-cols-4 h-full ">
+				{props.data.map((element: any) => {
+					return (
+						<MenuItemAlt
+							key={element._id}
+							_id={element._id}
+							name={element.name}
+							// pieces="2"
+							price={element.price}
+							tag={element.tag}
+							description={element.description}
+							image={element.image}
+						/>
+					);
+				})}
+			</div>
+			{Object.keys(cart).length && Object.values(cart)[0] && (
+				<CartChekoutButton />
+			)}
+			{console.log(cart)}
+		</>
 	);
 };
 
+// Using SSR for generating props
 export const getServerSideProps = async () => {
 	const url: string = `${host}:${port}/api/menu/getitems`;
 	const response = await fetch(url, {
