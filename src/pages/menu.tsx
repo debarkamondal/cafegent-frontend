@@ -1,9 +1,10 @@
 // import MenuItem from "@/components/MenuItem";
-import MenuItemAlt from "@/components/menuItem/MenuItemAlt";
-import React from "react";
+import MenuItemAlt from "@/components/menu/MenuItemAlt";
+import React, { useState } from "react";
 import CartChekoutButton from "@/components/CartChekoutButton";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import Modal from "@/components/menu/modal/Modal";
 const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 const port = process.env.NEXT_PUBLIC_BACKEND_PORT;
 
@@ -24,10 +25,10 @@ interface props {
 
 const menu = (props: props) => {
 	const cart = useSelector((state: RootState) => state.cart);
-
+	const [showModal, setShowModal] = useState(false);
 	return (
 		<>
-			<div className="m-4 gap-4 md:grid md:grid-cols-3 lg:grid-cols-4 h-full ">
+			<div className="m-4 gap-4 md:grid md:grid-cols-3 lg:grid-cols-4 h-full">
 				{props.data.map((element: any) => {
 					return (
 						<MenuItemAlt
@@ -44,7 +45,10 @@ const menu = (props: props) => {
 				})}
 			</div>
 			{/* Showing Checkout Button only when cart it not empty */}
-			{Object.keys(cart).length && <CartChekoutButton />}
+			{Object.keys(cart).length && (
+				<CartChekoutButton setShowModal={setShowModal} />
+			)}
+			<Modal showModal={showModal} setShowModal={setShowModal} />
 		</>
 	);
 };

@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    h1 {
+        @apply text-2xl
+    }
+
+    h2 {
+        @apply font-semibold
+    }
+
+    .primary-accent {
+        color: rgb(34, 197, 94);
+        border-color: rgb(34, 197, 94);
+    }
+
+    .secondary-accent {
+        color: rgb(134, 239, 172);
+        border-color: rgb(134, 239, 172);
+    }
+}
+
 :root {
     margin: 0;
     padding: 0;
