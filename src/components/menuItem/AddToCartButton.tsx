@@ -8,9 +8,10 @@ const AddToCartButton = (props: any) => {
 	const cart = useSelector((state: RootState) => state.cart);
 	const dispatch = useDispatch();
 	let addOnClick = (event: any) =>
-		dispatch(addToCart(event.target.id || event.currentTarget.id));
-	let removeOnClick = (event: any) =>
-		dispatch(removeFromCart(event.target.id || event.currentTarget.id));
+		dispatch(
+			addToCart({ itemId: props.id, name: props.name, price: props.price })
+		);
+	let removeOnClick = (event: any) => dispatch(removeFromCart({ ...props }));
 
 	return (
 		<>
@@ -27,7 +28,7 @@ const AddToCartButton = (props: any) => {
 					<button id={props.id} onClick={removeOnClick}>
 						<AiOutlineMinus />
 					</button>
-					<span>{cart[props.id]}</span>
+					<span>{cart[props.id].qty}</span>
 					<button id={props.id} onClick={addOnClick}>
 						<AiOutlinePlus />
 					</button>

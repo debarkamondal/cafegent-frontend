@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { BiCaretUpSquare } from "react-icons/bi";
-import AddToCartButton from "./CartCheckoutButton";
+import AddToCartButton from "./AddToCartButton";
 
 const MenuItemAlt = (props: any) => {
 	const loader = () => {
@@ -29,7 +29,7 @@ const MenuItemAlt = (props: any) => {
 					width={500}
 					height={200}
 				/>
-				<AddToCartButton id={props._id} />
+				<AddToCartButton id={props._id} price={props.price} name={props.name} />
 			</div>
 		</div>
 	);
