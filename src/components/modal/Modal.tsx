@@ -27,6 +27,7 @@ const Modal = (props: any) => {
 			onClick={() => props.setShowModal(false)}
 			onKeyDown={handleKeyDown}
 		>
+			{/* Stop event propagation so that on clicking outside the modal body closes the modal */}
 			<div
 				className="modalContainer relative bg-white p-3 text-center h-5/6 w-10/12"
 				onClick={(e) => e.stopPropagation()}
@@ -35,12 +36,13 @@ const Modal = (props: any) => {
 					<h1 className="primary-accent">Confirm Order</h1>
 					<MdClose
 						onClick={() => props.setShowModal(false)}
-						className="mt-1.5 primary-accent text-2xl absolute right-0 top-0"
+						className="mt-1.5 primary-accent text-2xl absolute right-0 top-0 cursor-pointer"
 					/>
 				</div>
 				<hr className="border-px primary-accent mt-2" />
 				<div className="modalBody flex flex-col">
 					<h2 className="primary-accent font-semibold m-2">Cart Items</h2>
+
 					{/* Since borders were overlapping used background color appearing through gaps as border */}
 					<div
 						className={`${styles.modalGrid} grid grid-cols-9 gap-px content-center`}
@@ -49,6 +51,8 @@ const Modal = (props: any) => {
 						<div className="col-span-1">Qty</div>
 						<div className="col-span-2">Price</div>
 						<div className="col-span-2">Amount</div>
+
+						{/* Rendering table with order details */}
 						{cartItems.map((item) => {
 							amount += cart[item].qty * cart[item].price;
 							return (

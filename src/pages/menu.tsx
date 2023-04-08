@@ -37,7 +37,6 @@ const Menu = (props: props) => {
 							key={element._id}
 							_id={element._id}
 							name={element.name}
-							// pieces="2"
 							price={element.price}
 							tag={element.tag}
 							description={element.description}
