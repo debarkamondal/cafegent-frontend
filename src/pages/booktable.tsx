@@ -92,14 +92,14 @@ const BookTable = () => {
 				</div>
 			) : null}
 			<br />
-			<div className="flex justify-center w-full">
-				<button
-					onClick={handleClick}
-					className="bg-green-400 rounded-full w-11/12 m-4 h-14"
-				>
-					Book
-				</button>
-			</div>
+			{/* <div className="flex justify-center w-full"> */}
+			<button
+				onClick={handleClick}
+				className="bg-green-400 fixed left-0 bottom-0 rounded-full w-11/12 m-4 h-14"
+			>
+				Book
+			</button>
+			{/* </div> */}
 		</>
 	);
 	// Rendering the scanned table no and text feild for phone number input

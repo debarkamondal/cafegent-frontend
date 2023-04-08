@@ -8,7 +8,7 @@
     }
 
     h2 {
-        @apply font-semibold
+        @apply font-semibold text-xl
     }
 
     .primary-accent {
