@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { MdClose } from "react-icons/md";
-import CartItems from "./CartItems";
+import ModalCartGrid from "./ModalCartGrid";
 import styles from "./Modal.module.css";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
@@ -52,7 +52,7 @@ const Modal = (props: any) => {
 						{cartItems.map((item) => {
 							amount += cart[item].qty * cart[item].price;
 							return (
-								<CartItems
+								<ModalCartGrid
 									key={item}
 									name={cart[item].name}
 									qty={cart[item].qty}

@@ -1,6 +1,6 @@
 import React from "react";
 
-const CartItems = (props: any) => {
+const ModalCartGrid = (props: any) => {
 	// let cartItem = cart[item];
 	return (
 		<>
@@ -12,4 +12,4 @@ const CartItems = (props: any) => {
 	);
 };
 
-export default CartItems;
+export default ModalCartGrid;
