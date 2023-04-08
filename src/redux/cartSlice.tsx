@@ -29,9 +29,9 @@ export const cartSlice = createSlice({
 			// state[itemId].price = action.payload.price;
 		},
 		removeFromCart: (state, action: PayloadAction<payload>) => {
-			// let itemId = action.payload.itemId;
-			// if (state[itemId].qty) state[itemId].qty--;
-			// if (state[itemId].qty === 0) delete state[itemId]; // Deleting Item if quantity is 0
+			let { itemId, ...rest } = action.payload;
+			if (state[itemId]) state[itemId].qty--;
+			if (state[itemId].qty === 0) delete state[itemId]; // Deleting Item if quantity is 0
 		},
 	},
 });
