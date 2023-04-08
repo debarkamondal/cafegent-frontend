@@ -1,14 +1,14 @@
-import { RootState } from "@/store";
 import React, { useEffect } from "react";
 import { MdClose } from "react-icons/md";
-import { useSelector } from "react-redux";
+import CartItems from "./CartItems";
 import styles from "./Modal.module.css";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 const Modal = (props: any) => {
 	const cart = useSelector((state: RootState) => state.cart);
 	const cartItems = Object.keys(cart);
 	let amount = 0;
-
 	const handleKeyDown = (e: any) => {
 		if (e.key === "Escape") props.setShowModal(false);
 	};
@@ -50,17 +50,14 @@ const Modal = (props: any) => {
 						<div className="col-span-2">Price</div>
 						<div className="col-span-2">Amount</div>
 						{cartItems.map((item) => {
-							let cartItem = cart[item];
-							amount += cartItem.qty * cartItem.price;
+							amount += cart[item].qty * cart[item].price;
 							return (
-								<>
-									<div className="col-span-4">{cartItem.name}</div>
-									<div className="col-span-1">{cartItem.qty}</div>
-									<div className="col-span-2">{cartItem.price}</div>
-									<div className="col-span-2">
-										{cartItem.price * cartItem.qty}
-									</div>
-								</>
+								<CartItems
+									key={item}
+									name={cart[item].name}
+									qty={cart[item].qty}
+									price={cart[item].price}
+								/>
 							);
 						})}
 						<div className="col-span-7">Total: </div>

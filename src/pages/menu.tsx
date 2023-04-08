@@ -50,7 +50,11 @@ const Menu = (props: props) => {
 			{Object.keys(cart).length && (
 				<CartChekoutButton setShowModal={setShowModal} />
 			)}
-			<Modal showModal={showModal} setShowModal={setShowModal} />
+			<Modal
+				id={props.data[0]._id}
+				showModal={showModal}
+				setShowModal={setShowModal}
+			/>
 		</>
 	);
 };

@@ -11,7 +11,10 @@ const AddToCartButton = (props: any) => {
 		dispatch(
 			addToCart({ itemId: props.id, name: props.name, price: props.price })
 		);
-	let removeOnClick = (event: any) => dispatch(removeFromCart({ ...props }));
+	let removeOnClick = (event: any) =>
+		dispatch(
+			removeFromCart({ itemId: props.id, name: props.name, price: props.price })
+		);
 
 	return (
 		<>
