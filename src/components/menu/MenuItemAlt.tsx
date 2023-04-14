@@ -4,6 +4,9 @@ import { BiCaretUpSquare } from "react-icons/bi";
 import AddToCartButton from "./AddToCartButton";
 
 const MenuItemAlt = (props: any) => {
+	let imgName = props.image.split("/");
+	imgName = imgName[imgName.length - 1];
+	console.log(imgName.split(".")[0]);
 	const loader = () => {
 		return props.image;
 	};
@@ -24,12 +27,12 @@ const MenuItemAlt = (props: any) => {
 				<Image
 					className="rounded-xl h-36 w-36 object-cover"
 					loader={loader}
-					src="BBQ-Chicken-Pizza-V2.jpg"
-					alt="tandoori-chicken"
+					src={imgName}
+					alt={imgName.split(".")[0]}
 					width={500}
 					height={200}
 				/>
-				<AddToCartButton id={props._id} price={props.price} name={props.name} />
+				<AddToCartButton id={props.id} price={props.price} name={props.name} />
 			</div>
 		</div>
 	);

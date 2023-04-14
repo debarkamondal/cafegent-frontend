@@ -14,7 +14,8 @@ const port = process.env.NEXT_PUBLIC_BACKEND_PORT;
 interface props {
 	data: [
 		{
-			_id: string;
+			id: string;
+			sk: string;
 			name: string;
 			price: string;
 			tag: string;
@@ -34,8 +35,8 @@ const Menu = (props: props) => {
 				{props.data.map((element: any) => {
 					return (
 						<MenuItemAlt
-							key={element._id}
-							_id={element._id}
+							key={element.id.concat(element.sk)}
+							id={element.id.concat(element.sk)}
 							name={element.name}
 							price={element.price}
 							tag={element.tag}
@@ -46,11 +47,11 @@ const Menu = (props: props) => {
 				})}
 			</div>
 			{/* Showing Checkout Button only when cart it not empty */}
-			{Object.keys(cart).length && (
+			{Object.keys(cart).length ? (
 				<CartChekoutButton setShowModal={setShowModal} />
-			)}
+			) : null}
 			<Modal
-				id={props.data[0]._id}
+				id={props.data[0].id}
 				showModal={showModal}
 				setShowModal={setShowModal}
 			/>
@@ -60,7 +61,7 @@ const Menu = (props: props) => {
 
 // Using SSR for generating props
 export const getServerSideProps = async () => {
-	const url: string = `${host}:${port}/api/menu/getitems`;
+	const url: string = `${host}/menu/MIN:01GXX9JHKHP5ZDW92NRRNPBHA4`;
 	const response = await fetch(url, {
 		method: "GET",
 		headers: {
