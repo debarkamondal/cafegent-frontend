@@ -6,7 +6,6 @@ import AddToCartButton from "./AddToCartButton";
 const MenuItemAlt = (props: any) => {
 	let imgName = props.image.split("/");
 	imgName = imgName[imgName.length - 1];
-	console.log(imgName.split(".")[0]);
 	const loader = () => {
 		return props.image;
 	};

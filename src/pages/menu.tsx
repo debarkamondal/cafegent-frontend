@@ -1,11 +1,13 @@
 // import MenuItem from "@/components/MenuItem";
-import MenuItemAlt from "@/components/menu/MenuItemAlt";
 import React, { useState } from "react";
-import CartChekoutButton from "@/components/cart/CartChekoutButton";
 import { useSelector } from "react-redux";
+
+import MenuItemAlt from "@/components/menu/MenuItemAlt";
+import CartChekoutButton from "@/components/cart/CartChekoutButton";
 import { RootState } from "@/store";
 import Modal from "@/components/modal/Modal";
 import MenuHeader from "@/components/menu/MenuHeader";
+
 const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 const port = process.env.NEXT_PUBLIC_BACKEND_PORT;
 
@@ -35,8 +37,10 @@ const Menu = (props: props) => {
 				{props.data.map((element: any) => {
 					return (
 						<MenuItemAlt
-							key={element.id.concat(element.sk)}
-							id={element.id.concat(element.sk)}
+							key={element.sk.concat(element.id)}
+							id={element.sk.concat(element.id)}
+							pk={element.id}
+							sk={element.sk}
 							name={element.name}
 							price={element.price}
 							tag={element.tag}
@@ -51,7 +55,7 @@ const Menu = (props: props) => {
 				<CartChekoutButton setShowModal={setShowModal} />
 			) : null}
 			<Modal
-				id={props.data[0].id}
+				// id={props.data[0].id}
 				showModal={showModal}
 				setShowModal={setShowModal}
 			/>
@@ -61,7 +65,7 @@ const Menu = (props: props) => {
 
 // Using SSR for generating props
 export const getServerSideProps = async () => {
-	const url: string = `${host}/menu/MIN:01GXX9JHKHP5ZDW92NRRNPBHA4`;
+	const url: string = `${host}/menu/MIN:01GXX9JHKHP5ZDW92NRRNPBHA`;
 	const response = await fetch(url, {
 		method: "GET",
 		headers: {

@@ -1,14 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { MdClose } from "react-icons/md";
+
 import ModalCartGrid from "./ModalCartGrid";
 import styles from "./Modal.module.css";
-import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+
+const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const Modal = (props: any) => {
 	const cart = useSelector((state: RootState) => state.cart);
+	const [cartMessage, setCartMessage] = useState("");
 	const cartItems = Object.keys(cart);
 	let amount = 0;
+
+	const submitOrder = async () => {
+		const response = await fetch(`${host}/order`, {
+			method: "POST",
+			headers: {},
+			body: JSON.stringify({ items: { ...cart }, message: cartMessage }),
+		});
+		return await response.json();
+	};
+
 	const handleKeyDown = (e: any) => {
 		if (e.key === "Escape") props.setShowModal(false);
 	};
@@ -69,6 +83,7 @@ const Modal = (props: any) => {
 					</div>
 					<h2 className="primary-accent m-3">Add a Note</h2>
 					<textarea
+						onChange={(e) => setCartMessage(e.target.value)}
 						name="note"
 						cols={50}
 						rows={5}
@@ -77,7 +92,10 @@ const Modal = (props: any) => {
 					></textarea>
 				</div>
 				<div className="modalFooter absolute bottom-0 left-0 w-full  ">
-					<button className="bg-green-400 rounded-full w-11/12 m-4 h-14">
+					<button
+						onClick={submitOrder}
+						className="bg-green-400 rounded-full w-11/12 m-4 h-14"
+					>
 						Place Order
 					</button>
 				</div>
