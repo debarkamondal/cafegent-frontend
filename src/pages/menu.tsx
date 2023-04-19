@@ -9,7 +9,6 @@ import Modal from "@/components/modal/Modal";
 import MenuHeader from "@/components/menu/MenuHeader";
 
 const host = process.env.NEXT_PUBLIC_BACKEND_URL;
-const port = process.env.NEXT_PUBLIC_BACKEND_PORT;
 
 //defining proptypes for menuItem
 
