@@ -19,7 +19,11 @@ const ModalBody = (props: any) => {
 			const response = await fetch(`${host}/order`, {
 				method: "POST",
 				headers: {},
-				body: JSON.stringify({ items: { ...cart }, message: cartMessage }),
+				body: JSON.stringify({
+					items: { ...cart },
+					message: cartMessage,
+					bid: cartItems[0].split(":")[1],
+				}),
 			});
 
 			let data = await response.json();
@@ -73,7 +77,7 @@ const ModalBody = (props: any) => {
 			<div className="modalFooter absolute bottom-0 left-0 w-full  ">
 				<button
 					onClick={submitOrder}
-					className="bg-green-400 rounded-full w-11/12 m-4 h-14"
+					className="text-white font-semibold bg-green-400 rounded-full w-11/12 m-4 h-14"
 				>
 					Place Order
 				</button>

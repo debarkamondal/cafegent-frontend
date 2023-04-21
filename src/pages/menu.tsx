@@ -36,8 +36,8 @@ const Menu = (props: props) => {
 				{props.data.map((element: any) => {
 					return (
 						<MenuItemAlt
-							key={element.sk.concat(element.id)}
-							id={element.sk.concat(element.id)}
+							key={`${element.id}:${element.sk}`}
+							id={`${element.id}:${element.sk}`}
 							pk={element.id}
 							sk={element.sk}
 							name={element.name}
