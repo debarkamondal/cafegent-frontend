@@ -44,6 +44,7 @@ const BookTable = () => {
 			let qrContent = JSON.parse(output);
 			dispatch(setTable(qrContent.table));
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [output]);
 
 	// Rendering qrSanner component if not scanned already

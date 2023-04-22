@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
 import ModalBody from "./ModalBody";
+import Image from "next/image";
 
 const Modal = (props: any) => {
 	const [loading, setLoading] = useState(false);
@@ -37,7 +38,7 @@ const Modal = (props: any) => {
 				</div>
 				<hr className="border-px primary-accent mt-2" />
 				{loading ? (
-					<img src="./assets/spinner.gif" />
+					<Image alt="spinner" src="./assets/spinner.gif" />
 				) : (
 					<ModalBody
 						setShowModal={props.setShowModal}
