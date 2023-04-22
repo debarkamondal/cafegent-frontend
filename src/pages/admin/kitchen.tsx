@@ -1,22 +1,22 @@
+import MenuItemAlt from "@/components/admin/kitchen/MenuItemAlt";
+import MenuHeader from "@/components/menu/MenuHeader";
 import React, { useEffect, useState } from "react";
 
 const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-type orders = [
-	{
-		table: number;
-		sk: string;
-		message: string;
-		id: string;
-		items: {
-			[id: string]: {
-				name: string;
-				price: number;
-				qty: number;
-			};
+interface order {
+	table: number;
+	sk: string;
+	message: string;
+	id: string;
+	items: {
+		[id: string]: {
+			name: string;
+			price: number;
+			qty: number;
 		};
-	}
-];
+	};
+}
 
 const Kitchen = () => {
 	const [orders, setOrders] = useState([]);
@@ -37,8 +37,10 @@ const Kitchen = () => {
 	});
 	return (
 		<>
-			{orders.map((order) => {
-				return <div>{JSON.stringify(order.id)}</div>;
+			<MenuHeader />
+
+			{orders.map((order: order) => {
+				return <MenuItemAlt order={order} />;
 			})}
 		</>
 	);
