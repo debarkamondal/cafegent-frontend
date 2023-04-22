@@ -40,7 +40,7 @@ const Kitchen = () => {
 			<MenuHeader />
 
 			{orders.map((order: order) => {
-				return <MenuItemAlt order={order} />;
+				return <MenuItemAlt key={Math.random() * 10000} order={order} />;
 			})}
 		</>
 	);
