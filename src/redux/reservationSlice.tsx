@@ -6,6 +6,7 @@ export interface ReservationState {
 	orders: [];
 	phone: number;
 	name: string;
+	shopName: string;
 }
 
 const initialState: ReservationState = {
@@ -13,14 +14,19 @@ const initialState: ReservationState = {
 	orders: [],
 	phone: 0,
 	name: "",
+	shopName: "",
 };
 
 export const reservationSlice = createSlice({
 	name: "reservation",
 	initialState,
 	reducers: {
-		setTable: (state, action: PayloadAction<number>) => {
-			state.table = action.payload;
+		setTable: (
+			state,
+			action: PayloadAction<{ table: number; shopName: string }>
+		) => {
+			state.table = action.payload.table;
+			state.shopName = action.payload.shopName;
 		},
 		setPhone: (state, action: PayloadAction<number>) => {
 			state.phone = action.payload;
