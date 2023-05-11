@@ -4,6 +4,7 @@ import { RootState } from "@/store";
 import { setTable, setPhone, setName } from "@/redux/reservationSlice";
 import { useRouter } from "next/router";
 import BookTableHeader from "@/components/booktable/BookTableHeader";
+import Image from "next/image";
 
 const BookTable = () => {
 	const host = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -69,22 +70,46 @@ const BookTable = () => {
 	return (
 		<>
 			<BookTableHeader />
-			<h1 className="text-center m-4 ">
-				Please fill up while we are verifying QR code
-			</h1>
-			<div className="bookingInfo flex flex-col m-4">
-				<input
-					className="my-2"
-					type="text"
-					placeholder="Enter your name"
-					onChange={handleNameUpdate}
-				/>
-				<input
-					className="my-2"
-					type="text"
-					placeholder="Enter your Phone number"
-					onChange={handlePhoneUpdate}
-				/>
+			<div>
+				{!output && (
+					<Image
+						className="m-auto"
+						src={"/assets/spinner.gif"}
+						alt="loading"
+						height={75}
+						width={75}
+					/>
+				)}
+				{output && (
+					<h1 className="text-center mt-4 underline underline-offset-2">
+						{output.shopName}
+					</h1>
+				)}
+				{output && (
+					<div className="text-center mt-1">Table: {output.table}</div>
+				)}
+			</div>
+			{output?.message && (
+				<div className="text-center m-4 text-red-500 bg-red-200 p-2 rounded-md">
+					<b>Error :</b> Please rescan the QR code or contact us
+				</div>
+			)}
+			<div className="flex flex-col mt-6 justify-center">
+				<h2 className="text-center m-2">Please fill up the details</h2>
+				<div className="bookingInfo flex flex-col m-2">
+					<input
+						className="m-2 border border-green-200 rounded-md p-2"
+						type="text"
+						placeholder="Enter your name"
+						onChange={handleNameUpdate}
+					/>
+					<input
+						className="m-2 border border-green-200 rounded-md p-2"
+						type="text"
+						placeholder="Enter your Phone number"
+						onChange={handlePhoneUpdate}
+					/>
+				</div>
 			</div>
 			<br />
 			{/* <div className="flex justify-center w-full"> */}
