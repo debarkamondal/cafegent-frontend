@@ -55,7 +55,16 @@ const BookTable = () => {
 	useEffect(() => {
 		if (router.isReady) verifyQrCode();
 	}, [router.isReady]);
-	useEffect(() => {}, [output]);
+	useEffect(() => {
+		if (output) {
+			if (output.name === "JsonWebTokenError") dispatch(setName("error"));
+			else
+				dispatch(setTable({ table: output.table, shopName: output.shopName }));
+			console.log(output);
+		}
+	}, [output]);
+
+	// Rendering qrSanner component if not scanned already
 
 	return (
 		<>
