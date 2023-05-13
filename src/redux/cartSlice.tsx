@@ -28,7 +28,7 @@ export const cartSlice = createSlice({
 			if (state[id].qty === 0) delete state[id]; // Deleting Item if quantity is 0
 		},
 		clearCart: (state) => {
-			Object.assign(state, initialState);
+			return { ...initialState };
 		},
 	},
 });
