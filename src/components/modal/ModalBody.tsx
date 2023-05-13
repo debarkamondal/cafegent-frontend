@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import GridData from "./GridData";
 import styles from "./Modal.module.css";
 import { RootState } from "@/store";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clearCart } from "@/redux/cartSlice";
 
 const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -12,6 +13,7 @@ const ModalBody = (props: any) => {
 	const cartItems = Object.keys(cart);
 	let amount = 0;
 	let loading = false;
+	const dispatch = useDispatch();
 
 	const submitOrder = async () => {
 		try {
@@ -27,10 +29,11 @@ const ModalBody = (props: any) => {
 			});
 
 			let data = await response.json();
-			props.setLoading(false);
-			data.$metadata.httpStatusCode === 200
-				? props.setShowModal(false)
-				: "Error Occured";
+			if (data.$metadata.httpStatusCode === 200) {
+				props.setLoading(false);
+				props.setShowModal(false);
+				dispatch(clearCart());
+			}
 		} catch (error) {
 			console.log(error);
 		}

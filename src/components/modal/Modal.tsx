@@ -38,7 +38,12 @@ const Modal = (props: any) => {
 				</div>
 				<hr className="border-px primary-accent mt-2" />
 				{loading ? (
-					<Image alt="spinner" src="./assets/spinner.gif" />
+					<Image
+						alt="spinner"
+						src="/assets/spinner.gif"
+						width={250}
+						height={250}
+					/>
 				) : (
 					<ModalBody
 						setShowModal={props.setShowModal}

@@ -1,14 +1,11 @@
 // import MenuItem from "@/components/MenuItem";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-
 import MenuItemAlt from "@/components/menu/MenuItemAlt";
 import CartChekoutButton from "@/components/cart/CartChekoutButton";
 import { RootState } from "@/store";
 import Modal from "@/components/modal/Modal";
 import MenuHeader from "@/components/menu/MenuHeader";
-import { type } from "os";
-import { isNullishCoalesce } from "typescript";
 
 const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 //defining proptypes for menuItem
@@ -50,28 +47,26 @@ const Menu = () => {
 		let authToken: string | null =
 			session.authToken || localStorage.getItem("authToken");
 		getMenu(authToken);
-	}, [menu]);
+	}, []);
 
 	return (
 		<>
-			<MenuHeader />
+			<MenuHeader key={Math.ceil(Math.random() * 100000)} />
 			<div className="m-4 gap-4 md:grid md:grid-cols-3 lg:grid-cols-4 h-full">
 				{menu &&
 					menu.map((element: any) => {
 						return (
-							<>
-								<MenuItemAlt
-									key={`${element.id}:${element.sk}`}
-									id={`${element.id}:${element.sk}`}
-									pk={element.id}
-									sk={element.sk}
-									name={element.name}
-									price={element.price}
-									tag={element.tag}
-									description={element.description}
-									image={element.image}
-								/>
-							</>
+							<MenuItemAlt
+								key={`${element.id}:${element.sk}`}
+								id={`${element.id}:${element.sk}`}
+								pk={element.id}
+								sk={element.sk}
+								name={element.name}
+								price={element.price}
+								tag={element.tag}
+								description={element.description}
+								image={element.image}
+							/>
 						);
 					})}
 			</div>

@@ -23,13 +23,16 @@ export const cartSlice = createSlice({
 			// state[id].price = action.payload.price;
 		},
 		removeFromCart: (state, action: PayloadAction<payload>) => {
-			let { id, ...rest } = action.payload;
+			let { id } = action.payload;
 			if (state[id]) state[id].qty--;
 			if (state[id].qty === 0) delete state[id]; // Deleting Item if quantity is 0
+		},
+		clearCart: (state) => {
+			Object.assign(state, initialState);
 		},
 	},
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
