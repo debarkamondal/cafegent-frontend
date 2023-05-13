@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store";
-import { setTable, setPhone, setName } from "@/redux/reservationSlice";
+import {
+	setTable,
+	setPhone,
+	setName,
+	setAuthToken,
+} from "@/redux/sessionSlice";
 import { useRouter } from "next/router";
 import BookTableHeader from "@/components/booktable/BookTableHeader";
 import Image from "next/image";
@@ -9,7 +14,7 @@ import Image from "next/image";
 const BookTable = () => {
 	const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-	const reservation = useSelector((state: RootState) => state.reservation);
+	const session = useSelector((state: RootState) => state.session);
 	const router = useRouter();
 	const [output, setOutput]: any = useState(); // using state to keep the output of the qrcode component streamlined for reuse
 	const dispatch = useDispatch();
@@ -30,16 +35,16 @@ const BookTable = () => {
 			},
 			body: JSON.stringify({
 				id: router.query.id,
-				phoneNo: reservation.phone,
-				name: reservation.name,
+				phoneNo: session.phone,
+				name: session.name,
 			}),
 		});
 		let data = await response.json();
-		console.log(data);
-		// if ("authToken" in data) {
-		// 	localStorage.setItem("authToken", data.authToken);
-		// 	router.push("/menu");
-		// }
+		if ("authToken" in data) {
+			dispatch(setAuthToken(data.authToken));
+			localStorage.setItem("authToken", data.authToken);
+			router.push("/menu");
+		}
 	};
 
 	const verifyQrCode = async () => {
@@ -86,13 +91,13 @@ const BookTable = () => {
 						{output.shopName}
 					</h1>
 				)}
-				{output && (
+				{output && !output.message && (
 					<div className="text-center mt-1">Table: {output.table}</div>
 				)}
 			</div>
 			{output?.message && (
 				<div className="text-center m-4 text-red-500 bg-red-200 p-2 rounded-md">
-					<b>Error :</b> Please rescan the QR code or contact us
+					<b>Error :</b> {output.message}
 				</div>
 			)}
 			<div className="flex flex-col mt-6 justify-center">

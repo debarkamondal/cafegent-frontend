@@ -2,7 +2,7 @@ import Qrcode from "@/components/Qrcode";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store";
-import { setTable, setPhone, setName } from "@/redux/reservationSlice";
+import { setTable, setPhone, setName } from "@/redux/sessionSlice";
 import { useRouter } from "next/router";
 import BookTableHeader from "@/components/booktable/BookTableHeader";
 
@@ -10,7 +10,7 @@ const BookTable = () => {
 	const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 	const port = process.env.NEXT_PUBLIC_BACKEND_PORT;
 
-	const reservation = useSelector((state: RootState) => state.reservation);
+	const session = useSelector((state: RootState) => state.session);
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const [output, setoutput]: any = useState(); // using state to keep the output of the qrcode component streamlined for reuse
@@ -30,9 +30,9 @@ const BookTable = () => {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				table: reservation.table,
-				phone: reservation.phone,
-				name: reservation.name,
+				table: session.table,
+				phone: session.phone,
+				name: session.name,
 			}),
 		});
 		let data = await response.json();
