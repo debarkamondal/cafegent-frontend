@@ -32,13 +32,23 @@
     "colId": "history",
     "containerId": "",
     "name": "https://5xg2u8q2ld.execute-api.ap-south-1.amazonaws.com/table/check/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlRJRDowMUdaOUI4RDdaVzZZU0FQWjUyNzkzV0JNWiIsInRhYmxlIjoiMSJ9.7vS0acwMYfj-a_-fzbWWqy_OyHDnUCEaSSFPUY5p7yw",
-    "url": "https://5xg2u8q2ld.execute-api.ap-south-1.amazonaws.com/table/check/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlRJRDowMUdaOUI4RDdaVzZZU0FQWjUyNzkzV0JNWiIsInRhYmxlIjoiMSJ9.7vS0acwMYfj-a_-fzbWWqy_OyHDnUCEaSSFPUY5p7yw",
-    "method": "GET",
+    "url": "https://5xg2u8q2ld.execute-api.ap-south-1.amazonaws.com/table/book",
+    "method": "POST",
     "sortNum": 0,
     "created": "2023-05-11T04:46:27.422Z",
-    "modified": "2023-05-11T04:46:27.422Z",
-    "headers": [],
+    "modified": "2023-05-13T02:49:46.237Z",
+    "headers": [
+      {
+        "name": "Content-Type",
+        "value": "application/json"
+      }
+    ],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlRJRDowMUdaOUI4RDdaVzZZU0FQWjUyNzkzV0JNWiIsInRhYmxlIjoiMSJ9.7vS0acwMYfj-a_-fzbWWqy_OyHDnUCEaSSFPUY5p7yw\",\n  \"name\": \"Deb\",\n  \"phoneNo\": 890\n}",
+      "form": []
+    },
     "tests": []
   },
   {

@@ -22,23 +22,24 @@ const BookTable = () => {
 	};
 
 	const handleClick = async () => {
-		const url: string = `${host}/api/table/book/`;
+		const url: string = `${host}/table/book`;
 		const response = await fetch(url, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				table: reservation.table,
-				phone: reservation.phone,
+				id: router.query.id,
+				phoneNo: reservation.phone,
 				name: reservation.name,
 			}),
 		});
 		let data = await response.json();
-		if ("authToken" in data) {
-			localStorage.setItem("authToken", data.authToken);
-			router.push("/menu");
-		}
+		console.log(data);
+		// if ("authToken" in data) {
+		// 	localStorage.setItem("authToken", data.authToken);
+		// 	router.push("/menu");
+		// }
 	};
 
 	const verifyQrCode = async () => {
