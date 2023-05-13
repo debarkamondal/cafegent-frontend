@@ -16,15 +16,18 @@ const ModalBody = (props: any) => {
 	const dispatch = useDispatch();
 
 	const submitOrder = async () => {
+		const authToken = localStorage.getItem("authToken");
 		try {
 			props.setLoading(true);
 			const response = await fetch(`${host}/order`, {
 				method: "POST",
-				headers: {},
+				headers: {
+					"Content-Type": "application/json",
+				},
 				body: JSON.stringify({
 					items: { ...cart },
 					message: cartMessage,
-					bid: cartItems[0].split(":")[1],
+					authToken: authToken,
 				}),
 			});
 
