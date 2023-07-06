@@ -10,12 +10,12 @@ type Props = {};
 const page = (props: Props) => {
 	return (
 		<Providers>
-			<div className="h-screen">
+			<div className="h-screen flex flex-col justify-center">
 				<Greeter />
 				<LoginForm />
-				<Button />
-				<Footer />
+				<Button className="w-5/6 mx-auto mt-6" />
 			</div>
+			<Footer />
 		</Providers>
 	);
 };
