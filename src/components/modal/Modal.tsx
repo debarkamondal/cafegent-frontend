@@ -1,14 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
-import ModalCartGrid from "./ModalCartGrid";
-import styles from "./Modal.module.css";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
+import ModalBody from "./ModalBody";
+import Image from "next/image";
 
 const Modal = (props: any) => {
-	const cart = useSelector((state: RootState) => state.cart);
-	const cartItems = Object.keys(cart);
-	let amount = 0;
+	const [loading, setLoading] = useState(false);
+
 	const handleKeyDown = (e: any) => {
 		if (e.key === "Escape") props.setShowModal(false);
 	};
@@ -27,7 +24,7 @@ const Modal = (props: any) => {
 			onClick={() => props.setShowModal(false)}
 			onKeyDown={handleKeyDown}
 		>
-			{/* Stop event propagation so that on clicking outside the modal body closes the modal */}
+			{/* Stop event propagation so that on clicking inside the modal body doesn't close the modal */}
 			<div
 				className="modalContainer relative bg-white p-3 text-center h-5/6 w-10/12"
 				onClick={(e) => e.stopPropagation()}
@@ -40,47 +37,20 @@ const Modal = (props: any) => {
 					/>
 				</div>
 				<hr className="border-px primary-accent mt-2" />
-				<div className="modalBody flex flex-col">
-					<h2 className="primary-accent font-semibold m-2">Cart Items</h2>
-
-					{/* Since borders were overlapping used background color appearing through gaps as border */}
-					<div
-						className={`${styles.modalGrid} grid grid-cols-9 gap-px content-center`}
-					>
-						<div className="col-span-4">Item</div>
-						<div className="col-span-1">Qty</div>
-						<div className="col-span-2">Price</div>
-						<div className="col-span-2">Amount</div>
-
-						{/* Rendering table with order details */}
-						{cartItems.map((item) => {
-							amount += cart[item].qty * cart[item].price;
-							return (
-								<ModalCartGrid
-									key={item}
-									name={cart[item].name}
-									qty={cart[item].qty}
-									price={cart[item].price}
-								/>
-							);
-						})}
-						<div className="col-span-7">Total: </div>
-						<div className="col-span-2">{amount}</div>
-					</div>
-					<h2 className="primary-accent m-3">Add a Note</h2>
-					<textarea
-						name="note"
-						cols={50}
-						rows={5}
-						placeholder="Mention allergies, customization or requests. (Optional)"
-						className="border secondary-accent place-items-end"
-					></textarea>
-				</div>
-				<div className="modalFooter absolute bottom-0 left-0 w-full  ">
-					<button className="bg-green-400 rounded-full w-11/12 m-4 h-14">
-						Place Order
-					</button>
-				</div>
+				{loading ? (
+					<Image
+						alt="spinner"
+						src="/assets/spinner.gif"
+						width={250}
+						height={250}
+					/>
+				) : (
+					<ModalBody
+						setShowModal={props.setShowModal}
+						lodaing={loading}
+						setLoading={setLoading}
+					/>
+				)}
 			</div>
 		</div>
 	);

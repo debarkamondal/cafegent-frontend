@@ -1,20 +1,20 @@
 // import MenuItem from "@/components/MenuItem";
-import MenuItemAlt from "@/components/menu/MenuItemAlt";
-import React, { useState } from "react";
-import CartChekoutButton from "@/components/cart/CartChekoutButton";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import MenuItemAlt from "@/components/menu/MenuItemAlt";
+import CartChekoutButton from "@/components/cart/CartChekoutButton";
 import { RootState } from "@/store";
 import Modal from "@/components/modal/Modal";
 import MenuHeader from "@/components/menu/MenuHeader";
-const host = process.env.NEXT_PUBLIC_BACKEND_URL;
-const port = process.env.NEXT_PUBLIC_BACKEND_PORT;
 
+const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 //defining proptypes for menuItem
 
 interface props {
 	data: [
 		{
-			_id: string;
+			id: string;
+			sk: string;
 			name: string;
 			price: string;
 			tag: string;
@@ -24,33 +24,58 @@ interface props {
 	];
 }
 
-const Menu = (props: props) => {
+const Menu = () => {
+	// authToken = localStorage.getItem("authToken");
 	const cart = useSelector((state: RootState) => state.cart);
+	const session = useSelector((state: RootState) => state.session);
+	const [menu, setMenu] = useState([]);
 	const [showModal, setShowModal] = useState(false);
+
+	const getMenu = async (authToken: string | null) => {
+		const url: string = `${host}/menu/${authToken}`;
+		const response = await fetch(url, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const data = await response.json();
+		setMenu(data);
+	};
+
+	useEffect(() => {
+		let authToken: string | null =
+			session.authToken || localStorage.getItem("authToken");
+		getMenu(authToken);
+	}, []);
+
 	return (
 		<>
-			<MenuHeader />
+			<MenuHeader key={Math.ceil(Math.random() * 100000)} />
 			<div className="m-4 gap-4 md:grid md:grid-cols-3 lg:grid-cols-4 h-full">
-				{props.data.map((element: any) => {
-					return (
-						<MenuItemAlt
-							key={element._id}
-							_id={element._id}
-							name={element.name}
-							price={element.price}
-							tag={element.tag}
-							description={element.description}
-							image={element.image}
-						/>
-					);
-				})}
+				{menu &&
+					menu.map((element: any) => {
+						return (
+							<MenuItemAlt
+								key={`${element.id}:${element.sk}`}
+								id={`${element.id}:${element.sk}`}
+								pk={element.id}
+								sk={element.sk}
+								name={element.name}
+								price={element.price}
+								tag={element.tag}
+								description={element.description}
+								image={element.image}
+							/>
+						);
+					})}
 			</div>
 			{/* Showing Checkout Button only when cart it not empty */}
-			{Object.keys(cart).length && (
+			{Object.keys(cart).length ? (
 				<CartChekoutButton setShowModal={setShowModal} />
-			)}
+			) : null}
 			<Modal
-				id={props.data[0]._id}
+				// id={props.data[0].id}
 				showModal={showModal}
 				setShowModal={setShowModal}
 			/>
@@ -59,18 +84,19 @@ const Menu = (props: props) => {
 };
 
 // Using SSR for generating props
-export const getServerSideProps = async () => {
-	const url: string = `${host}:${port}/api/menu/getitems`;
-	const response = await fetch(url, {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
-	const data = await response.json();
-	return {
-		props: { data },
-	};
-};
+
+// export const getServerSideProps = async () => {
+// 	const url: string = `${host}/menu/${authToken}`;
+// 	const response = await fetch(url, {
+// 		method: "GET",
+// 		headers: {
+// 			"Content-Type": "application/json",
+// 		},
+// 	});
+// 	const data = await response.json();
+// 	return {
+// 		props: { data },
+// 	};
+// };
 
 export default Menu;

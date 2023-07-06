@@ -8,12 +8,10 @@ const AddToCartButton = (props: any) => {
 	const cart = useSelector((state: RootState) => state.cart);
 	const dispatch = useDispatch();
 	let addOnClick = (event: any) =>
-		dispatch(
-			addToCart({ itemId: props.id, name: props.name, price: props.price })
-		);
+		dispatch(addToCart({ id: props.id, name: props.name, price: props.price }));
 	let removeOnClick = (event: any) =>
 		dispatch(
-			removeFromCart({ itemId: props.id, name: props.name, price: props.price })
+			removeFromCart({ id: props.id, name: props.name, price: props.price })
 		);
 
 	return (
