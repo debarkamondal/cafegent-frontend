@@ -7,7 +7,8 @@ import React from "react";
 
 type Props = {};
 
-const page = (props: Props) => {
+const page = ({ params }: { params: { id: string } }) => {
+	const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 	return (
 		<Providers>
 			<div className="h-screen flex flex-col justify-center">
