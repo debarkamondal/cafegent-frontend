@@ -1,3 +1,5 @@
+import Greeter from "@/components/Greeter";
+import LoginForm from "@/components/LoginForm";
 import Providers from "@/redux/provider";
 import React from "react";
 
@@ -6,7 +8,8 @@ type Props = {};
 const page = (props: Props) => {
 	return (
 		<Providers>
-			<div>Index</div>
+			<Greeter />
+			{/* <LoginForm /> */}
 		</Providers>
 	);
 };
