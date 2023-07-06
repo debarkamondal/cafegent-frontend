@@ -12,7 +12,7 @@ const BookTable = () => {
 	const reservation = useSelector((state: RootState) => state.reservation);
 	const dispatch = useDispatch();
 	const router = useRouter();
-	const [output, setoutput]: any = useState(); // using state to keep the output of the qrcode component streamlined for reuse
+	const [output, setOutput]: any = useState(); // using state to keep the output of the qrcode component streamlined for reuse
 
 	const handleUpdate = (event: any): void => {
 		dispatch(setPhone(event.target.value));
@@ -68,7 +68,7 @@ const BookTable = () => {
 						qrbox={{ width: 250, height: 250 }}
 						disableFlip={false}
 						output={output}
-						setoutput={setoutput}
+						setoutput={setOutput}
 					/>
 				</div>
 			) : null}
