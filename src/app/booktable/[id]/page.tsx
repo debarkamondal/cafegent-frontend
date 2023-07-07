@@ -13,16 +13,11 @@ const fetchTableData = async (id: string) => {
 	return await data.json();
 };
 
-const page = ({ params }: { params: { id: string } }) => {
+const page = async ({ params }: { params: { id: string } }) => {
 	const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 	params.id = params.id.replaceAll("%3A", ":");
-	let res;
+	const res = await fetchTableData(params.id);
 
-	(async function tableStatus() {
-		const url = `${host}/table/check/${params.id}`;
-		const data = await fetch(url, { method: "GET" });
-		res = data.json();
-	})();
 	return (
 		<Providers>
 			<Suspense fallback={<p>Loading...</p>}>
