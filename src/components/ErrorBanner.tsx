@@ -1,8 +1,12 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 
 const ErrorBanner = (props: { message: string; type: string }) => {
-	let color: string;
-	if (props.type === "error") color = "red";
+	useEffect(() => {
+		console.log(props);
+		if (props.type === "error") setColor("red");
+	});
+	const [color, setColor] = useState("red");
 	return (
 		<div
 			className={`absolute top-0 text-center m-4 p-2 bg-${color}-300 border border-${color}-600 text-${color}-900`}
