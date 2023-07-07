@@ -20,12 +20,9 @@ const page = async ({ params }: { params: { id: string } }) => {
 	return (
 		<Providers>
 			<Suspense fallback={<p>Loading...</p>}>
-				<div className="h-screen flex flex-col justify-center">
-					<Greeter />
-					{res.message && <ErrorBanner message={res.message} />}
-					<LoginForm />
-					<Button className="w-5/6 mx-auto mt-6" />
-				</div>
+				{res.message && <ErrorBanner message={res.message} type={res.type} />}
+				<Greeter />
+				<LoginForm />
 				<Footer />
 			</Suspense>
 		</Providers>
