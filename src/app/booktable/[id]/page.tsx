@@ -10,14 +10,12 @@ type Props = {};
 const page = ({ params }: { params: { id: string } }) => {
 	const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 	params.id = params.id.replaceAll("%3A", ":");
-	console.log(params.id);
 	let res;
 
 	(async function tableStatus() {
 		const url = `${host}/table/check/${params.id}`;
 		const data = await fetch(url, { method: "GET" });
 		res = data.json();
-		// await console.log(res);
 	})();
 	return (
 		<Providers>
