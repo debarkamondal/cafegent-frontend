@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
 import { setName, setPhone } from "@/redux/sessionSlice";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Button from "./Button";
 
-const LoginForm = () => {
+const LoginForm = (props: { token: string }) => {
 	const dispatch = useAppDispatch();
+	const session = useAppSelector((state) => state.session);
 	const handleNameUpdate = (event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(setName(event.target.value));
 	};
@@ -13,8 +14,22 @@ const LoginForm = () => {
 		dispatch(setPhone(parseInt(event.target.value)));
 	};
 
+	const bookTable = async () => {
+		const host = process.env.NEXT_PUBLIC_BACKEND_URL;
+		const url = `${host}/table/book`;
+		const data = await fetch(url, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				token: props.token,
+				name: session.name,
+				phoneNo: session.phone,
+			}),
+		});
+	};
+
 	return (
-		<div className="flex flex-col">
+		<>
 			<div className="bg-primary-900 text-primary-300 m-4 p-5 flex flex-col text-center h-auto rounded-xl font-main underline underline-offset-4">
 				<h1 className="text-2xl mt-6 mb-3">Table: 1</h1>
 				<input
@@ -30,8 +45,11 @@ const LoginForm = () => {
 					onChange={handlePhoneUpdate}
 				/>
 			</div>
-			<Button className="w-5/6 mx-auto mt-6" />
-		</div>
+			<Button
+				className="flex justify-center w-5/6 mx-auto mt-6"
+				handleClick={bookTable}
+			/>
+		</>
 	);
 };
 

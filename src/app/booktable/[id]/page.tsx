@@ -14,8 +14,7 @@ const fetchTableData = async (id: string) => {
 };
 
 const page = async ({ params }: { params: { id: string } }) => {
-	const host = process.env.NEXT_PUBLIC_BACKEND_URL;
-	params.id = params.id.replaceAll("%3A", ":");
+	const id = params.id.replaceAll("%3A", ":");
 	const res = await fetchTableData(params.id);
 
 	return (
@@ -23,7 +22,7 @@ const page = async ({ params }: { params: { id: string } }) => {
 			<Suspense fallback={<p>Loading...</p>}>
 				{res.message && <ErrorBanner message={res.message} type={res.type} />}
 				<Greeter />
-				<LoginForm />
+				<LoginForm token={id} />
 				<Footer />
 			</Suspense>
 		</Providers>
