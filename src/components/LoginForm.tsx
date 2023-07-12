@@ -46,8 +46,8 @@ const LoginForm = (props: { token: string }) => {
 				/>
 			</div>
 			<Button
-				className="flex justify-center w-5/6 mx-auto mt-6"
-				handleClick={bookTable}
+				className="flex justify-center w-5/6 mx-auto mt-6 p-2 h-12 rounded-xl bg-primary-900 text-primary-300 text-lg"
+				onClick={bookTable}
 			/>
 		</>
 	);
