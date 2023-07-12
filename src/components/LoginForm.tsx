@@ -1,10 +1,9 @@
 "use client";
-import React from "react";
 import { setName, setPhone } from "@/redux/sessionSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import Button from "./Button";
+import { Button } from "./Button";
 
-const LoginForm = (props: { token: string }) => {
+const LoginForm = (props: { token: string; type: string }) => {
 	const dispatch = useAppDispatch();
 	const session = useAppSelector((state) => state.session);
 	const handleNameUpdate = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +45,8 @@ const LoginForm = (props: { token: string }) => {
 				/>
 			</div>
 			<Button
-				className="flex justify-center w-5/6 mx-auto mt-6 p-2 h-12 rounded-xl bg-primary-900 text-primary-300 text-lg"
+				variant={props.type === "error" ? "disabled" : "default"}
+				message={"Book Table"}
 				onClick={bookTable}
 			/>
 		</>

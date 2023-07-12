@@ -1,14 +1,6 @@
-"use client";
 import React, { FC } from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-
-interface bannerProps
-	extends React.HTMLAttributes<HTMLDivElement>,
-		VariantProps<typeof bannerVariants> {
-	type: string;
-	message: string;
-}
 
 const bannerVariants = cva(
 	"absolute top-0 text-center m-4 p-2 rounded-lg border",
@@ -21,6 +13,13 @@ const bannerVariants = cva(
 		},
 	}
 );
+
+interface bannerProps
+	extends React.HTMLAttributes<HTMLDivElement>,
+		VariantProps<typeof bannerVariants> {
+	type: string;
+	message: string;
+}
 
 const Banner: FC<bannerProps> = ({
 	variant,

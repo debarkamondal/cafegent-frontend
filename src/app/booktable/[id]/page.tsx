@@ -22,7 +22,7 @@ const page = async ({ params }: { params: { id: string } }) => {
 					<Banner message={res.message} type={res.type} variant={"error"} />
 				)}
 				<Greeter />
-				<LoginForm token={id} />
+				<LoginForm token={id} type={res.type} />
 				<Footer />
 			</Suspense>
 		</Providers>
