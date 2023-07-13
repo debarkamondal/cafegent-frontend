@@ -1,4 +1,5 @@
 import ItemCard from "@/components/menu/ItemCard";
+import { Button } from "@/components/utils/Button";
 import React from "react";
 
 const page = () => {
@@ -35,6 +36,13 @@ const page = () => {
 			<ItemCard />
 			<ItemCard />
 			<ItemCard />
+			<div className="bottom-0 h-16 bg-gradient-to-t backdrop-blur mix-blend-darken from-primary-900 to-transparent pt-3"></div>
+			<Button
+				message="Place Order"
+				variant={"default"}
+				size={"default"}
+				className="sticky bottom-4"
+			/>
 		</>
 	);
 };
