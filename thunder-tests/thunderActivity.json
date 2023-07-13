@@ -1,0 +1,21 @@
+[
+    {
+        "_id": "41c98680-9b11-427c-a9cf-35d23b04511a",
+        "colId": "history",
+        "containerId": "",
+        "name": "https://5xg2u8q2ld.execute-api.ap-south-1.amazonaws.com/table/check/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlRJRDowMUdaOUI4RDdaVzZZU0FQWjUyNzkzV0JNWiIsInRhYmxlIjoxLCJpYXQiOjE2ODg3MDc4Mzl9.VRn-OsXNUKX0EQmkj6b4oyNHGJyyBWDA4RHi-SW5HeE",
+        "url": "https://5xg2u8q2ld.execute-api.ap-south-1.amazonaws.com/table/check/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlRJRDowMUdaOUI4RDdaVzZZU0FQWjUyNzkzV0JNWiIsInRhYmxlIjoxLCJpYXQiOjE2ODg3MDc4Mzl9.VRn-OsXNUKX0EQmkj6b4oyNHGJyyBWDA4RHi-SW5HeE",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-07T00:56:44.890Z",
+        "modified": "2023-07-12T20:45:18.534Z",
+        "headers": [
+            {
+                "name": "cookies",
+                "value": "[\"auth:sample\"]"
+            }
+        ],
+        "params": [],
+        "tests": []
+    }
+]
