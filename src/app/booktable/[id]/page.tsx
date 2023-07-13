@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import Greeter from "@/components/Greeter";
 import LoginForm from "@/components/LoginForm";
 import Providers from "@/redux/provider";
-import React, { Suspense } from "react";
+import React from "react";
 
 const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 const fetchTableData = async (id: string) => {
@@ -17,14 +17,12 @@ const page = async ({ params }: { params: { id: string } }) => {
 	const res = await fetchTableData(params.id);
 	return (
 		<Providers>
-			<Suspense fallback={<p>Loading...</p>}>
-				{res.type === "error" && (
-					<Banner message={res.message} type={res.type} variant={"error"} />
-				)}
-				<Greeter />
-				<LoginForm token={id} type={res.type} />
-				<Footer />
-			</Suspense>
+			{res.type === "error" && (
+				<Banner message={res.message} type={res.type} variant={"error"} />
+			)}
+			<Greeter />
+			<LoginForm token={id} type={res.type} />
+			<Footer />
 		</Providers>
 	);
 };

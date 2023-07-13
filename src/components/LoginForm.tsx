@@ -10,13 +10,15 @@ const LoginForm = (props: { token: string; type: string }) => {
 		const url = `${host}/table/book`;
 		const data = await fetch(url, {
 			method: "POST",
-			headers: { "Content-Type": "application/json" },
+			credentials: "include",
+			// headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
 				token: props.token,
 				name: name,
 				phoneNo: phone,
 			}),
 		});
+		console.log(await data.json());
 	};
 
 	const handleFormData = async (event: React.FormEvent<HTMLFormElement>) => {
