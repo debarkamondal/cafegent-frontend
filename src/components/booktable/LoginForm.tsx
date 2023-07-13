@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "./Button";
+import { Button } from "@/components/utils/Button";
 
 const LoginForm = (props: { token: string; type: string }) => {
 	const bookTable = async (
@@ -50,6 +50,8 @@ const LoginForm = (props: { token: string; type: string }) => {
 			<Button
 				variant={props.type === "error" ? "disabled" : "default"}
 				message={"Book Table"}
+				className="mt-6"
+				size={"default"}
 			/>
 		</form>
 	);

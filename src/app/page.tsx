@@ -1,5 +1,5 @@
 import Greeter from "@/components/Greeter";
-import LoginForm from "@/components/LoginForm";
+import LoginForm from "@/components/booktable/LoginForm";
 import Providers from "@/redux/provider";
 import React from "react";
 

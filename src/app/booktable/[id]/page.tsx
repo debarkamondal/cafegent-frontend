@@ -1,7 +1,7 @@
-import { Banner } from "@/components/Banner";
-import Footer from "@/components/Footer";
-import Greeter from "@/components/Greeter";
-import LoginForm from "@/components/LoginForm";
+import { Banner } from "@/components/utils/Banner";
+import Footer from "@/components/utils/Footer";
+import Greeter from "@/components/booktable/Greeter";
+import LoginForm from "@/components/booktable/LoginForm";
 import Providers from "@/redux/provider";
 import React from "react";
 
