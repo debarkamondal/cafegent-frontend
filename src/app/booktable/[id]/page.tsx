@@ -22,7 +22,7 @@ const page = async ({ params }: { params: { id: string } }) => {
 			)}
 			<Greeter />
 			<LoginForm token={id} type={res.type} />
-			<Footer />
+			<Footer className="fixed bottom-0" />
 		</Providers>
 	);
 };
