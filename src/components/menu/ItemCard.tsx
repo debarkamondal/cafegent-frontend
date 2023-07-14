@@ -3,7 +3,7 @@ import { Button } from "../utils/Button";
 
 const ItemCard = () => {
 	return (
-		<div className="bg-primary-300 text-primary-900 m-4 p-3 text-center rounded-xl font-main drop-shadow-md grid gap-1 grid-cols-9 grid-rows-3">
+		<div className="bg-primary-300 text-primary-900 m-2 p-3 text-center rounded-xl font-main drop-shadow-md grid gap-1 grid-cols-9 grid-rows-3">
 			<span className="h-24 border row-span-3 col-span-3"></span>
 			<span className="col-span-4">Chicken Biriyani</span>
 			<span className="self-end text-center row-span-2 col-span-2 font-semibold">
