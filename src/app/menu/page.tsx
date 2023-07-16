@@ -2,8 +2,18 @@ import OrderButton from "@/components/menu/OrderButton";
 import ItemCard from "@/components/menu/ItemCard";
 import Footer from "@/components/utils/Footer";
 import React from "react";
+import axios from "axios";
 
-const page = () => {
+const url = process.env.NEXT_PUBLIC_BACKEND_URL;
+const fetchMenu = async () => {
+	const menu = await axios.get(`${url}/menu/id`, {
+		withCredentials: true,
+	});
+	console.log(menu.data);
+	return menu;
+};
+const page = async () => {
+	await fetchMenu();
 	return (
 		<>
 			<div className="bg-primary-900 text-primary-100 m-4 p-5 h-auto rounded-xl font-main drop-shadow-lg">

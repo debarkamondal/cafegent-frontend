@@ -3,7 +3,6 @@ import Footer from "@/components/utils/Footer";
 import Greeter from "@/components/booktable/Greeter";
 import LoginForm from "@/components/booktable/LoginForm";
 import Providers from "@/redux/provider";
-import React from "react";
 
 const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 const fetchTableData = async (id: string) => {
