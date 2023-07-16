@@ -32,7 +32,7 @@ const LoginForm = (props: { token: string; type: string }) => {
 		const { name, phone } = formData;
 		const data = await bookTable(name, phone);
 		console.log(data);
-		if ("message" in data) router.push("/menu");
+		if (data.type && data.type === "success") router.push("/menu");
 	};
 
 	return (
