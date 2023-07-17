@@ -1,16 +1,15 @@
+"use client";
 import OrderButton from "@/components/menu/OrderButton";
 import ItemCard from "@/components/menu/ItemCard";
 import Footer from "@/components/utils/Footer";
 import React from "react";
-import axios from "axios";
+import { axiosAWS } from "@/lib/utils";
 
-const url = process.env.NEXT_PUBLIC_BACKEND_URL;
 const fetchMenu = async () => {
-	const menu = await axios.get(`${url}/menu/id`, {
-		withCredentials: true,
-	});
+	const menu = await axiosAWS.get("/menu");
+
 	console.log(menu.data);
-	return menu;
+	return menu.data;
 };
 const page = async () => {
 	await fetchMenu();

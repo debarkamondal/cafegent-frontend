@@ -3,12 +3,10 @@ import Footer from "@/components/utils/Footer";
 import Greeter from "@/components/booktable/Greeter";
 import LoginForm from "@/components/booktable/LoginForm";
 import Providers from "@/redux/provider";
-import axios from "axios";
+import { axiosAWS } from "@/lib/utils";
 
-const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 const fetchTableData = async (id: string) => {
-	const url = `${host}/table/check/${id}`;
-	const res = await axios.get(url);
+	const res = await axiosAWS.get(`table/check/${id}`);
 	return res.data;
 };
 
