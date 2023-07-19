@@ -1,7 +1,17 @@
-import React from "react";
+import React, { FC } from "react";
 import { Button } from "../utils/Button";
 
-const ItemCard = () => {
+interface itemProps {
+	image: string;
+	sk: string;
+	tag: string;
+	id: string;
+	price: number;
+	description: string;
+	name: string;
+}
+
+const ItemCard: FC<itemProps> = ({ image, price, description, name }) => {
 	return (
 		<div className="bg-primary-300 text-primary-900 m-2 p-3 text-center rounded-xl font-main drop-shadow-md grid gap-1 grid-cols-9 grid-rows-3">
 			<span className="h-24 border row-span-3 col-span-3"></span>
