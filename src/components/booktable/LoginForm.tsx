@@ -1,33 +1,38 @@
 "use client";
 import { Button } from "@/components/utils/Button";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const LoginForm = (props: { token: string; type: string }) => {
+	const router = useRouter();
 	const bookTable = async (
 		name: FormDataEntryValue,
 		phone: FormDataEntryValue
 	) => {
 		const host = process.env.NEXT_PUBLIC_BACKEND_URL;
 		const url = `${host}/table/book`;
-		const data = await fetch(url, {
-			method: "POST",
-			credentials: "include",
-			headers: { "content-type": "application/json" },
-			body: JSON.stringify({
+		const res = await axios.post(
+			url,
+			{
 				token: props.token,
 				name: name,
 				phoneNo: phone,
-			}),
-		});
-		console.log(await data.json());
+			},
+			{
+				withCredentials: true,
+			}
+		);
+		return res.data;
 	};
-
 	const handleFormData = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const formData = Object.fromEntries(
 			new FormData(event.currentTarget).entries()
 		);
 		const { name, phone } = formData;
-		bookTable(name, phone);
+		const data = await bookTable(name, phone);
+		console.log(data);
+		if (data.type && data.type === "success") router.push("/menu");
 	};
 
 	return (
