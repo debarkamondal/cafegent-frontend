@@ -17,20 +17,20 @@ const bannerVariants = cva(
 interface bannerProps
 	extends React.HTMLAttributes<HTMLDivElement>,
 		VariantProps<typeof bannerVariants> {
-	type: string;
+	status: string;
 	message: string;
 }
 
 const Banner: FC<bannerProps> = ({
 	variant,
 	className,
-	type,
+	status,
 	message,
 	...props
 }) => {
 	return (
 		<div className={cn(bannerVariants({ variant, className }))} {...props}>
-			<span className="font-bold">{type.toUpperCase()}</span>: {message}
+			<span className="font-bold">{status.toUpperCase()}</span>: {message}
 		</div>
 	);
 };

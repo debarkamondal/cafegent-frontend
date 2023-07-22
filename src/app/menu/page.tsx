@@ -4,9 +4,12 @@ import ItemCard from "@/components/menu/ItemCard";
 import Footer from "@/components/utils/Footer";
 import React, { useEffect, useState } from "react";
 import { axiosAWS } from "@/lib/utils";
+import { useAppSelector } from "@/redux/hooks";
+import { RootState } from "@/redux/store";
 
 const page = () => {
 	const [menu, setMenu] = useState([]);
+	const session = useAppSelector((state) => state.session);
 	const fetchMenu = async () => {
 		try {
 			const menuData = await axiosAWS.get("/menu");
@@ -25,7 +28,7 @@ const page = () => {
 				<div className="flex">
 					<section className="w-10/12">
 						<h1 className="text-3xl my-2">
-							Hi, <span className="font-bold">Debarka</span>
+							Hi, <span className="font-bold">{session.name}</span>
 						</h1>
 						<span className="text-sm">Welcome to Adda-Cafe</span>
 					</section>
@@ -59,17 +62,6 @@ const page = () => {
 						/>
 					);
 				})}
-			{/* <ItemCard />
-			<ItemCard />
-			<ItemCard />
-			<ItemCard />
-			<ItemCard />
-			<ItemCard />
-			<ItemCard />
-			<ItemCard />
-			<ItemCard />
-			<ItemCard />
-			<ItemCard /> */}
 			<Footer className="h-16 flex gap-1 justify-center items-center mb-4" />
 			<OrderButton />
 		</>

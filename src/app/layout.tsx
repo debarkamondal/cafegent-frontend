@@ -1,4 +1,5 @@
 import "@/app/global.css";
+import Providers from "@/redux/provider";
 import { Montserrat } from "next/font/google";
 
 const fontMain = Montserrat({
@@ -19,7 +20,9 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en" className={`${fontMain.variable} bg-primary-100`}>
-			<body>{children}</body>
+			<body>
+				<Providers>{children}</Providers>
+			</body>
 		</html>
 	);
 }

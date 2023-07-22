@@ -1,10 +1,13 @@
 "use client";
 import { Button } from "@/components/utils/Button";
+import { useAppDispatch } from "@/redux/hooks";
+import { setName, setPhone } from "@/redux/sessionSlice";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
 const LoginForm = (props: { token: string; type: string }) => {
 	const router = useRouter();
+	const dispatch = useAppDispatch();
 	const bookTable = async (
 		name: FormDataEntryValue,
 		phone: FormDataEntryValue
@@ -31,7 +34,11 @@ const LoginForm = (props: { token: string; type: string }) => {
 		);
 		const { name, phone } = formData;
 		const data = await bookTable(name, phone);
-		if (data) router.push("/menu");
+		if (data) {
+			dispatch(setName(name as string));
+			dispatch(setPhone(parseInt(phone as string)));
+			router.push("/menu");
+		}
 		// if (data.type && data.type === "success") router.push("/menu");
 	};
 

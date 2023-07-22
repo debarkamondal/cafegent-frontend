@@ -16,9 +16,9 @@ const page = async ({ params }: { params: { id: string } }) => {
 	return (
 		<Providers>
 			{data.type === "error" && (
-				<Banner message={data.message} type={data.type} variant={"error"} />
+				<Banner message={data.message} status={data.type} variant={"error"} />
 			)}
-			<Greeter />
+			<Greeter name={data.shopName} />
 			<LoginForm token={id} type={data.type} />
 			<Footer className="fixed bottom-0" />
 		</Providers>
