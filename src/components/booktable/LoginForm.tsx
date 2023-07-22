@@ -9,7 +9,7 @@ const LoginForm = (props: { token: string; type: string }) => {
 		name: FormDataEntryValue,
 		phone: FormDataEntryValue
 	) => {
-		const host = process.env.NEXT_PUBLIC_BACKEND_URL;
+		const host = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 		const url = `${host}/table/book`;
 		const res = await axios.post(
 			url,
@@ -31,7 +31,6 @@ const LoginForm = (props: { token: string; type: string }) => {
 		);
 		const { name, phone } = formData;
 		const data = await bookTable(name, phone);
-		console.log(data);
 		if (data) router.push("/menu");
 		// if (data.type && data.type === "success") router.push("/menu");
 	};

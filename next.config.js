@@ -1,4 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "apnacashier.s3.ap-south-1.amazonaws.com",
+				port: "",
+				pathname: "/**",
+			},
+		],
+	},
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

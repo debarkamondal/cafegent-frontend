@@ -1,20 +1,24 @@
+"use client";
 import OrderButton from "@/components/menu/OrderButton";
 import ItemCard from "@/components/menu/ItemCard";
 import Footer from "@/components/utils/Footer";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { axiosAWS } from "@/lib/utils";
 
-const fetchMenu = async () => {
-	try {
-		const menu = await axiosAWS.get("/menu");
-		console.log(menu.data.cookie);
-		return menu.data;
-	} catch (error) {
-		console.log(error);
-	}
-};
-const page = async () => {
-	const menu = await fetchMenu();
+const page = () => {
+	const [menu, setMenu] = useState([]);
+	const fetchMenu = async () => {
+		try {
+			const menuData = await axiosAWS.get("/menu");
+			setMenu(menuData.data);
+			console.log(menu);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	useEffect(() => {
+		fetchMenu();
+	}, []);
 	return (
 		<>
 			<div className="bg-primary-900 text-primary-100 m-4 p-5 h-auto rounded-xl font-main drop-shadow-lg">
@@ -43,7 +47,18 @@ const page = async () => {
 					Drinks
 				</span>
 			</div>
-			{/* {menu.for} */}
+			{menu &&
+				menu.map((element: any) => {
+					return (
+						<ItemCard
+							key={Math.random()}
+							image={element.image}
+							description={element.description}
+							price={element.price}
+							name={element.name}
+						/>
+					);
+				})}
 			{/* <ItemCard />
 			<ItemCard />
 			<ItemCard />
