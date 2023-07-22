@@ -31,7 +31,9 @@ const LoginForm = (props: { token: string; type: string }) => {
 		);
 		const { name, phone } = formData;
 		const data = await bookTable(name, phone);
-		if (data.type && data.type === "success") router.push("/menu");
+		console.log(data);
+		if (data) router.push("/menu");
+		// if (data.type && data.type === "success") router.push("/menu");
 	};
 
 	return (

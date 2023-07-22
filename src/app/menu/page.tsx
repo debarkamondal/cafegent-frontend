@@ -7,6 +7,7 @@ import { axiosAWS } from "@/lib/utils";
 const fetchMenu = async () => {
 	try {
 		const menu = await axiosAWS.get("/menu");
+		console.log(menu.data.cookie);
 		return menu.data;
 	} catch (error) {
 		console.log(error);
