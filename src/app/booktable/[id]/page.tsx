@@ -15,7 +15,7 @@ const page = async ({ params }: { params: { id: string } }) => {
 	const data = await fetchTableData(params.id);
 	return (
 		<Providers>
-			{data.type === "error" && (
+			{data.status === "error" && (
 				<Banner message={data.message} status={data.type} variant={"error"} />
 			)}
 			<Greeter name={data.shopName} />

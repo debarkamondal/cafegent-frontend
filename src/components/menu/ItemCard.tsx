@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Button } from "../utils/Button";
 import Image from "next/image";
+import { BiPlayCircle } from "react-icons/bi";
 
 interface itemProps {
 	image: string;
@@ -21,7 +22,6 @@ const ItemCard: FC<itemProps> = ({
 }) => {
 	return (
 		<div className="bg-primary-300 text-primary-900 m-2 p-3 text-center rounded-xl font-main drop-shadow-md grid gap-1 grid-cols-9 grid-rows-3">
-			{/* <span className="h-24 border row-span-3 col-span-3"></span> */}
 			<Image
 				alt={name}
 				src={image}
@@ -29,9 +29,12 @@ const ItemCard: FC<itemProps> = ({
 				width={100}
 				className="row-span-3 col-span-3 rounded-xl object-cover h-24"
 			/>
-			<span className="col-span-4 font-semibold">{name}</span>
+			<span className="col-span-4 font-semibold">
+				{<BiPlayCircle />}
+				{name}
+			</span>
 			<span className="self-end text-center row-span-2 col-span-2 font-semibold">
-				Rs:{price}
+				&#8377; {price}
 			</span>
 			<p className="mx-2 row-span-2 col-span-4 text-[0.75rem] font-normal text-left leading-3">
 				{description}

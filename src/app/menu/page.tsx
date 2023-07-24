@@ -5,18 +5,29 @@ import Footer from "@/components/utils/Footer";
 import React, { useEffect, useState } from "react";
 import { axiosAWS } from "@/lib/utils";
 import { useAppSelector } from "@/redux/hooks";
-import { RootState } from "@/redux/store";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
+import { Banner } from "@/components/utils/Banner";
+import { error } from "@/lib/types";
 
 const page = () => {
-	const [menu, setMenu] = useState([]);
+	const [menu, setMenu] = useState<Array<Object>>();
+	const [error, setError] = useState<error>();
 	const session = useAppSelector((state) => state.session);
+	const router = useRouter();
 	const fetchMenu = async () => {
 		try {
 			const menuData = await axiosAWS.get("/menu");
 			setMenu(menuData.data);
 			console.log(menu);
-		} catch (error) {
-			console.log(error);
+		} catch (error: any | AxiosError) {
+			const { message, status } = error.response.data;
+			switch (message) {
+				case "Unauthorized":
+					setError({ status: status, message: message });
+					break;
+			}
 		}
 	};
 	useEffect(() => {
@@ -25,14 +36,14 @@ const page = () => {
 	return (
 		<>
 			<div className="bg-primary-900 text-primary-100 m-4 p-5 h-auto rounded-xl font-main drop-shadow-lg">
-				<div className="flex">
+				<div className="flex items-center">
 					<section className="w-10/12">
 						<h1 className="text-3xl my-2">
 							Hi, <span className="font-bold">{session.name}</span>
 						</h1>
 						<span className="text-sm">Welcome to Adda-Cafe</span>
 					</section>
-					<section className="w-2/12 my-auto text-center ">X</section>
+					<AiOutlineShoppingCart className="w-2/12 text-3xl my-2" />
 				</div>
 				<input
 					className="bg-primary-100 w-full mt-4 h-12 p-2 rounded-xl text-primary-900 placeholder-primary-900"
@@ -50,6 +61,13 @@ const page = () => {
 					Drinks
 				</span>
 			</div>
+			{error && (
+				<Banner
+					status={error.status}
+					message={error.message}
+					variant={"error"}
+				/>
+			)}
 			{menu &&
 				menu.map((element: any) => {
 					return (
