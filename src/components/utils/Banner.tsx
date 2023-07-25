@@ -23,7 +23,6 @@ interface bannerProps
 }
 
 const { error } = store.getState();
-console.log(error);
 
 const Banner: FC<bannerProps> = ({
 	variant,

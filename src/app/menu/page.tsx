@@ -7,20 +7,16 @@ import { axiosAWS } from "@/lib/utils";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
-import { Banner } from "@/components/utils/Banner";
 import { setError } from "@/redux/errorSlice";
 
 const page = () => {
-	const [menu, setMenu] = useState<Array<Object>>();
+	const [menu, setMenu] = useState<Array<Object> | null>(null);
 	const session = useAppSelector((state) => state.session);
-	const router = useRouter();
 	const dispatch = useAppDispatch();
 	const fetchMenu = async () => {
 		try {
 			const menuData = await axiosAWS.get("/menu");
 			setMenu(menuData.data);
-			console.log(menu);
 		} catch (error: any | AxiosError) {
 			const data = error.response.data;
 			switch (data.message) {
@@ -61,24 +57,16 @@ const page = () => {
 					Drinks
 				</span>
 			</div>
-			{/* {error && (
-				<Banner
-					status={error.status}
-					message={error.message}
-					variant={"error"}
-				/>
-			)} */}
-			{menu &&
+
+			{Array.isArray(menu) &&
 				menu.map((element: any) => {
-					return (
-						<ItemCard
-							key={Math.random()}
-							image={element.image}
-							description={element.description}
-							price={element.price}
-							name={element.name}
-						/>
-					);
+					<ItemCard
+						key={Math.random()}
+						image={element.image}
+						description={element.description}
+						price={element.price}
+						name={element.name}
+					/>;
 				})}
 			<Footer className="h-16 flex gap-1 justify-center items-center mb-4" />
 			<OrderButton />
