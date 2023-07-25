@@ -4,28 +4,28 @@ import ItemCard from "@/components/menu/ItemCard";
 import Footer from "@/components/utils/Footer";
 import React, { useEffect, useState } from "react";
 import { axiosAWS } from "@/lib/utils";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { Banner } from "@/components/utils/Banner";
-import { error } from "@/lib/types";
+import { setError } from "@/redux/errorSlice";
 
 const page = () => {
 	const [menu, setMenu] = useState<Array<Object>>();
-	const [error, setError] = useState<error>();
 	const session = useAppSelector((state) => state.session);
 	const router = useRouter();
+	const dispatch = useAppDispatch();
 	const fetchMenu = async () => {
 		try {
 			const menuData = await axiosAWS.get("/menu");
 			setMenu(menuData.data);
 			console.log(menu);
 		} catch (error: any | AxiosError) {
-			const { message, status } = error.response.data;
-			switch (message) {
+			const data = error.response.data;
+			switch (data.message) {
 				case "Unauthorized":
-					setError({ status: status, message: message });
+					dispatch(setError(data));
 					break;
 			}
 		}
@@ -61,13 +61,13 @@ const page = () => {
 					Drinks
 				</span>
 			</div>
-			{error && (
+			{/* {error && (
 				<Banner
 					status={error.status}
 					message={error.message}
 					variant={"error"}
 				/>
-			)}
+			)} */}
 			{menu &&
 				menu.map((element: any) => {
 					return (

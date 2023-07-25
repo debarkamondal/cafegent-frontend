@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { store } from "@/redux/store";
 
 const bannerVariants = cva(
 	"absolute w-11/12 top-0 text-center m-4 p-2 rounded-lg border",
@@ -17,20 +18,24 @@ const bannerVariants = cva(
 interface bannerProps
 	extends React.HTMLAttributes<HTMLDivElement>,
 		VariantProps<typeof bannerVariants> {
-	status: string;
-	message: string;
+	status?: string;
+	message?: string;
 }
+
+const { error } = store.getState();
+console.log(error);
 
 const Banner: FC<bannerProps> = ({
 	variant,
 	className,
-	status,
-	message,
+	// status,
+	// message,
 	...props
 }) => {
 	return (
 		<div className={cn(bannerVariants({ variant, className }))} {...props}>
-			<span className="font-bold">{status.toUpperCase()}</span>: {message}
+			{/* {error && <span className="font-bold">{error.status.toUpperCase()}</span>}
+			: {error.message} */}
 		</div>
 	);
 };

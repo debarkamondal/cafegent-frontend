@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import sessionSlice from "./sessionSlice";
 import cartSlice from "./cartSlice";
+import errorSlice from "./errorSlice";
 
 export const store = configureStore({
 	reducer: {
 		session: sessionSlice,
 		cart: cartSlice,
+		error: errorSlice,
 	},
 });
 
