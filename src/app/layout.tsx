@@ -20,10 +20,8 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	console.log(error);
 	return (
 		<html lang="en" className={`${fontMain.variable} bg-primary-100`}>
-			<Banner />
 			<body>
 				<Providers>{children}</Providers>
 			</body>

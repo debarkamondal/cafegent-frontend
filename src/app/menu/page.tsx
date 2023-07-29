@@ -1,45 +1,17 @@
-"use client";
+import Menu from "@/components/menu/Menu";
 import OrderButton from "@/components/menu/OrderButton";
-import ItemCard from "@/components/menu/ItemCard";
 import Footer from "@/components/utils/Footer";
-import React, { useEffect, useState } from "react";
-import { axiosAWS } from "@/lib/utils";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import React from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
-import { Banner } from "@/components/utils/Banner";
-import { setError } from "@/redux/errorSlice";
 
 const page = () => {
-	const [menu, setMenu] = useState<Array<Object>>();
-	const session = useAppSelector((state) => state.session);
-	const router = useRouter();
-	const dispatch = useAppDispatch();
-	const fetchMenu = async () => {
-		try {
-			const menuData = await axiosAWS.get("/menu");
-			setMenu(menuData.data);
-			console.log(menu);
-		} catch (error: any | AxiosError) {
-			const data = error.response.data;
-			switch (data.message) {
-				case "Unauthorized":
-					dispatch(setError(data));
-					break;
-			}
-		}
-	};
-	useEffect(() => {
-		fetchMenu();
-	}, []);
 	return (
 		<>
 			<div className="bg-primary-900 text-primary-100 m-4 p-5 h-auto rounded-xl font-main drop-shadow-lg">
 				<div className="flex items-center">
 					<section className="w-10/12">
 						<h1 className="text-3xl my-2">
-							Hi, <span className="font-bold">{session.name}</span>
+							Hi, <span className="font-bold">name</span>
 						</h1>
 						<span className="text-sm">Welcome to Adda-Cafe</span>
 					</section>
@@ -61,25 +33,7 @@ const page = () => {
 					Drinks
 				</span>
 			</div>
-			{/* {error && (
-				<Banner
-					status={error.status}
-					message={error.message}
-					variant={"error"}
-				/>
-			)} */}
-			{menu &&
-				menu.map((element: any) => {
-					return (
-						<ItemCard
-							key={Math.random()}
-							image={element.image}
-							description={element.description}
-							price={element.price}
-							name={element.name}
-						/>
-					);
-				})}
+			<Menu />
 			<Footer className="h-16 flex gap-1 justify-center items-center mb-4" />
 			<OrderButton />
 		</>

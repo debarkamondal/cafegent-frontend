@@ -25,9 +25,9 @@ const ItemCard: FC<itemProps> = ({
 			<Image
 				alt={name}
 				src={image}
-				height={100}
-				width={100}
-				className="row-span-3 col-span-3 rounded-xl object-cover h-24"
+				width={300}
+				height={300}
+				className="row-span-3 col-span-3 rounded-xl object-cover h-full w-full"
 			/>
 			<span className="col-span-4 font-semibold">
 				{<BiPlayCircle />}
