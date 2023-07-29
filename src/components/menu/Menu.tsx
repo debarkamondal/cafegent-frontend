@@ -17,7 +17,6 @@ const Menu: FC = () => {
 		try {
 			const menuData = await axiosAWS.get("/menu");
 			setMenu(menuData.data);
-			console.log(menu);
 		} catch (error: any | AxiosError) {
 			const data = error.response.data;
 			switch (data.message) {
