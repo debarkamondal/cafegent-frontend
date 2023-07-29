@@ -1,7 +1,5 @@
 import "@/app/global.css";
-import { Banner } from "@/components/utils/Banner";
 import Providers from "@/redux/provider";
-import { store } from "@/redux/store";
 import { Montserrat } from "next/font/google";
 
 const fontMain = Montserrat({
