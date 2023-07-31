@@ -43,7 +43,7 @@ const LoginForm = (props: { token: string; type: string }) => {
 	};
 
 	return (
-		<form onSubmit={handleFormData}>
+		<form onSubmit={handleFormData} className="h-2/5">
 			<div className="bg-primary-900 text-primary-300 m-4 p-5 flex flex-col text-center h-auto rounded-xl font-main underline underline-offset-4">
 				<h1 className="text-2xl mt-6 mb-3">Table: 1</h1>
 				<input

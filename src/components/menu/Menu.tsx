@@ -7,9 +7,10 @@ import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import React, { FC, useEffect, useState } from "react";
 import ItemCard from "./ItemCard";
+import { menuItemType } from "@/lib/types";
 
 const Menu: FC = () => {
-	const [menu, setMenu] = useState<Array<Object>>();
+	const [menu, setMenu] = useState<Array<menuItemType>>();
 	const session = useAppSelector((state) => state.session);
 	const router = useRouter();
 	const dispatch = useAppDispatch();

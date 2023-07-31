@@ -6,7 +6,7 @@ const Footer: FC<footerProps> = ({ className }, ...props) => {
 	return (
 		<div
 			className={cn(
-				"w-full text-center font-main p-2 my-2 text-primary-900",
+				"absolute w-full text-center font-main p-2 my-2 text-primary-900",
 				className
 			)}
 		>
