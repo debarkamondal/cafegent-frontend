@@ -1,17 +1,22 @@
-import React from "react";
+import React, { FC } from "react";
 import { buttonVariants } from "../utils/Button";
+import { VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
-const AddToCartButton = () => {
+interface addToCartButtonVariant
+	extends React.HTMLAttributes<HTMLDivElement>,
+		VariantProps<typeof buttonVariants> {}
+
+const AddToCartButton: FC<addToCartButtonVariant> = ({
+	variant,
+	size,
+	className,
+}) => {
 	return (
 		<>
-			<div
-				className={`${buttonVariants({
-					variant: "default",
-					size: "small",
-				})} flex justify-around items-center align-middle text-xl`}
-			>
+			<div className={cn(buttonVariants({ variant, size, className }))}>
 				<button>-</button>
-				<span className="text-sm">1</span>
+				<span>1</span>
 				<button>+</button>
 			</div>
 		</>
