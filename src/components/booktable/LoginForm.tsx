@@ -43,20 +43,20 @@ const LoginForm = (props: { token: string; type: string }) => {
 	};
 
 	return (
-		<form onSubmit={handleFormData} className="h-2/5">
-			<div className="bg-primary-900 text-primary-300 m-4 p-5 flex flex-col text-center h-auto rounded-xl font-main underline underline-offset-4">
-				<h1 className="text-2xl mt-6 mb-3">Table: 1</h1>
+		<form onSubmit={handleFormData} className="max-w-xl mx-auto h-3/5">
+			<div className="bg-primary-900 text-primary-300 m-4 p-5 h-3/6 flex flex-col justify-around text-center rounded-xl font-main">
+				<h1 className="text-2xl underline underline-offset-4">Table: 1</h1>
 				<input
 					type="text"
 					name="name"
 					placeholder="Name"
-					className="mt-6 h-12 rounded-xl p-2 bg-primary-100 text-primary-900 placeholder-primary-900"
+					className="h-12 rounded-xl p-2 bg-primary-100 text-primary-900 placeholder-primary-900"
 				/>
 				<input
 					type="number"
 					name="phone"
 					placeholder="Phone number"
-					className="mt-6 mb-3 h-12 rounded-xl p-2 bg-primary-100 text-primary-900 placeholder-primary-900"
+					className="h-12 rounded-xl p-2 bg-primary-100 text-primary-900 placeholder-primary-900"
 				/>
 			</div>
 			<Button

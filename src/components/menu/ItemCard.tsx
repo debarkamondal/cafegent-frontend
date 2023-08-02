@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Button } from "../utils/Button";
 import Image from "next/image";
 import { BiPlayCircle } from "react-icons/bi";
+import AddToCartButton from "./AddToCartButton";
 
 interface itemProps {
 	image: string;
@@ -39,12 +40,13 @@ const ItemCard: FC<itemProps> = ({
 			<p className="mx-2 row-span-2 col-span-4 text-[0.75rem] font-normal text-left leading-3">
 				{description}
 			</p>
-			<Button
+			{/* <Button
 				message="Add +"
 				className="col-span-2"
 				variant={"default"}
 				size={"small"}
-			/>
+			/> */}
+			<AddToCartButton />
 		</div>
 	);
 };

@@ -36,7 +36,8 @@ const Menu: FC = () => {
 				menu.map((element: any) => {
 					return (
 						<ItemCard
-							key={Math.random()}
+							key={`${element.id}:${element.sk}`}
+							id={`${element.id}:${element.sk}`}
 							image={element.image}
 							description={element.description}
 							price={element.price}
