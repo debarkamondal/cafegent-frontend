@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/common/components/Button";
+import { ButtonContainer } from "@/common/components/ButtonContainer";
 import { useAppDispatch } from "@/redux/hooks";
 import { setName, setPhone } from "@/redux/sessionSlice";
 import axios from "axios";
@@ -43,8 +43,11 @@ const LoginForm = (props: { token: string; type: string }) => {
 	};
 
 	return (
-		<form onSubmit={handleFormData} className="max-w-xl mx-auto h-3/5">
-			<div className="bg-primary-900 text-primary-300 m-4 p-5 h-3/6 flex flex-col justify-around text-center rounded-xl font-main">
+		<form
+			onSubmit={handleFormData}
+			className=" max-w-xl mx-auto h-3/5 font-main"
+		>
+			<div className="bg-primary-900 text-primary-300 m-4 p-5 h-3/6 flex flex-col justify-around text-center rounded-xl">
 				<h1 className="text-2xl underline underline-offset-4">Table: 1</h1>
 				<input
 					type="text"
@@ -59,12 +62,12 @@ const LoginForm = (props: { token: string; type: string }) => {
 					className="h-12 rounded-xl p-2 bg-primary-100 text-primary-900 placeholder-primary-900"
 				/>
 			</div>
-			<Button
+			<ButtonContainer
 				variant={props.type === "error" ? "disabled" : "default"}
-				message={"Book Table"}
-				className="mt-6"
 				size={"default"}
-			/>
+			>
+				<button>Book Table</button>
+			</ButtonContainer>
 		</form>
 	);
 };

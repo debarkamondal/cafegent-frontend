@@ -1,5 +1,5 @@
 import Filters from "@/components/menu/Filters";
-import Menu from "@/components/menu/Menu";
+import Menu from "@/components/menu/MenuContainer";
 import OrderButton from "@/components/menu/OrderButton";
 import TopCard from "@/components/menu/TopCard";
 import Footer from "@/common/components/Footer";

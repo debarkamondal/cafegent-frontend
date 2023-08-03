@@ -19,7 +19,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={`${fontMain.variable} bg-primary-300`}>
+		<html lang="en" className={`${fontMain.variable} font-main bg-primary-300`}>
 			<body>
 				<Providers>{children}</Providers>
 			</body>

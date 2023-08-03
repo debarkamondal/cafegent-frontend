@@ -1,29 +1,20 @@
 import React, { FC } from "react";
-import { buttonVariants } from "@/common/components/Button";
-import { VariantProps } from "class-variance-authority";
-import { cn } from "@/common/utils";
+import { ButtonContainer } from "@/common/components/ButtonContainer";
 
-interface addToCartButtonVariant
-	extends React.HTMLAttributes<HTMLDivElement>,
-		VariantProps<typeof buttonVariants> {
+interface addToCartButtonVariant extends React.HTMLAttributes<HTMLDivElement> {
 	id: string;
 	price: number;
 	name: string;
 }
 
-const AddToCartButton: FC<addToCartButtonVariant> = ({
-	variant,
-	size,
-	className,
-	...props
-}) => {
+const AddToCartButton: FC<addToCartButtonVariant> = ({ id, name, price }) => {
 	return (
 		<>
-			<div className={cn(buttonVariants({ variant, size, className }))}>
+			<ButtonContainer variant={"default"} size={"small"} className="gap-3">
 				<button>-</button>
 				<span>1</span>
 				<button>+</button>
-			</div>
+			</ButtonContainer>
 		</>
 	);
 };

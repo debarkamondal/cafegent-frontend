@@ -22,7 +22,7 @@ const ItemCard: FC<itemProps> = ({
 	...props
 }) => {
 	return (
-		<div className="bg-primary-100 text-primary-900 h-28 m-2 p-3 text-center text-sm rounded-xl font-main drop-shadow-md grid gap-1 grid-cols-9 grid-rows-3 items-center">
+		<div className="bg-primary-100 text-primary-900 h-28 m-2 p-3 text-sm rounded-xl font-main drop-shadow-md grid gap-1 grid-cols-9 grid-rows-3 ">
 			<Image
 				alt={name}
 				src={image}
@@ -30,7 +30,7 @@ const ItemCard: FC<itemProps> = ({
 				height={300}
 				className="row-span-3 col-span-3 rounded-xl object-cover w-full h-full"
 			/>
-			<div className="col-span-6 font-semibold gap-1 flex items-center">
+			<div className="mx-1 col-span-6 font-semibold gap-1 flex items-center">
 				<BiPlayCircle />
 				{name}
 			</div>
@@ -41,12 +41,10 @@ const ItemCard: FC<itemProps> = ({
 				&#8377; {price}
 			</span>
 			<AddToCartButton
-				variant={"default"}
-				size={"small"}
-				className="flex justify-around items-center align-middle text-sm w-10/12 font-semibold col-span-2"
 				id={id}
 				price={price}
 				name={name}
+				className="col-span-2 self-center"
 			/>
 		</div>
 	);

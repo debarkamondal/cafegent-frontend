@@ -9,7 +9,7 @@ import React, { FC, useEffect, useState } from "react";
 import ItemCard from "./ItemCard";
 import { menuItemType } from "@/common/types";
 
-const Menu: FC = () => {
+const MenuContainer: FC = () => {
 	const [menu, setMenu] = useState<Array<menuItemType>>();
 	const session = useAppSelector((state) => state.session);
 	const router = useRouter();
@@ -49,4 +49,4 @@ const Menu: FC = () => {
 	);
 };
 
-export default Menu;
+export default MenuContainer;
