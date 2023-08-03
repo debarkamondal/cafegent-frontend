@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/utils/Button";
+import { Button } from "@/common/components/Button";
 import { useAppDispatch } from "@/redux/hooks";
 import { setName, setPhone } from "@/redux/sessionSlice";
 import axios from "axios";

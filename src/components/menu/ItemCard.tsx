@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { Button } from "../utils/Button";
 import Image from "next/image";
 import { BiPlayCircle } from "react-icons/bi";
 import AddToCartButton from "./AddToCartButton";
@@ -8,7 +7,7 @@ interface itemProps {
 	image: string;
 	sk?: string;
 	tag?: string;
-	id?: string;
+	id: string;
 	price: number;
 	description: string;
 	name: string;
@@ -16,6 +15,7 @@ interface itemProps {
 
 const ItemCard: FC<itemProps> = ({
 	image,
+	id,
 	price,
 	description,
 	name,
@@ -44,6 +44,9 @@ const ItemCard: FC<itemProps> = ({
 				variant={"default"}
 				size={"small"}
 				className="flex justify-around items-center align-middle text-sm w-10/12 font-semibold col-span-2"
+				id={id}
+				price={price}
+				name={name}
 			/>
 		</div>
 	);

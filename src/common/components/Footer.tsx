@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/common/utils";
 import React, { FC } from "react";
 
 interface footerProps extends React.HTMLAttributes<HTMLDivElement> {}

@@ -1,13 +1,13 @@
 "use client";
 
-import { axiosAWS } from "@/lib/utils";
+import { axiosAWS } from "@/common/utils";
 import { setError } from "@/redux/errorSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import React, { FC, useEffect, useState } from "react";
 import ItemCard from "./ItemCard";
-import { menuItemType } from "@/lib/types";
+import { menuItemType } from "@/common/types";
 
 const Menu: FC = () => {
 	const [menu, setMenu] = useState<Array<menuItemType>>();
