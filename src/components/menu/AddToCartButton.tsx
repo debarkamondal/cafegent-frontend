@@ -18,7 +18,7 @@ const AddToCartButton: FC<addToCartButtonVariant> = ({ id, name, price }) => {
 
 	return (
 		<>
-			<div
+			{/* <div
 				className={buttonVariants({
 					variant: "default",
 					size: "small",
@@ -32,11 +32,35 @@ const AddToCartButton: FC<addToCartButtonVariant> = ({ id, name, price }) => {
 						<button onClick={increaseQty}>+</button>
 					</>
 				) : (
-					<button className="w-full" onClick={increaseQty}>
+					<button className="" onClick={increaseQty}>
 						Add +
 					</button>
 				)}
-			</div>
+			</div> */}
+			{item ? (
+				<div
+					className={buttonVariants({
+						variant: "default",
+						size: "small",
+						className: "col-span-2 flex justify-around items-center",
+					})}
+				>
+					<button onClick={decreaseQty}>-</button>
+					<span>{item ? item.qty : "Add"}</span>
+					<button onClick={increaseQty}>+</button>
+				</div>
+			) : (
+				<Button
+					className={buttonVariants({
+						variant: "default",
+						size: "small",
+						className: "col-span-2 flex justify-around items-center",
+					})}
+					onClick={increaseQty}
+				>
+					Add+
+				</Button>
+			)}
 		</>
 	);
 };

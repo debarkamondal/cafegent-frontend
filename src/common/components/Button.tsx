@@ -12,7 +12,7 @@ const buttonVariants = cva(
 			},
 			size: {
 				default: "h-12 w-5/6 rounded-xl text-lg",
-				small: "h-8 w-5/6 text-xs rounded-md",
+				small: "h-6 w-12 text-xs rounded-md",
 			},
 			defaultVariants: {
 				variant: "default",
