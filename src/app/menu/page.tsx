@@ -1,5 +1,5 @@
 import Filters from "@/components/menu/Filters";
-import Menu from "@/components/menu/MenuContainer";
+import MenuContainer from "@/components/menu/MenuContainer";
 import OrderButton from "@/components/menu/OrderButton";
 import TopCard from "@/components/menu/TopCard";
 import Footer from "@/common/components/Footer";
@@ -10,7 +10,7 @@ const page = () => {
 		<>
 			<TopCard />
 			<Filters />
-			<Menu />
+			<MenuContainer />
 			<Footer className="h-16 flex gap-1 justify-center items-center mb-4" />
 			<OrderButton />
 		</>
