@@ -40,7 +40,7 @@ const ItemCard: FC<itemProps> = ({
 			<span className="self-end text-center col-span-2 font-semibold">
 				&#8377; {price}
 			</span>
-			<AddToCartButton id={id} price={price} name={name} className="" />
+			<AddToCartButton id={id} price={price} name={name} />
 		</div>
 	);
 };

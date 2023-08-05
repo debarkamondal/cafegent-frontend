@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { ButtonContainer } from "@/common/components/ButtonContainer";
+import { Button, buttonVariants } from "@/common/components/Button";
 
 interface addToCartButtonVariant extends React.HTMLAttributes<HTMLDivElement> {
 	id: string;
@@ -9,13 +9,19 @@ interface addToCartButtonVariant extends React.HTMLAttributes<HTMLDivElement> {
 
 const AddToCartButton: FC<addToCartButtonVariant> = ({ id, name, price }) => {
 	return (
-		<div className="col-span-2 justify-self-center">
-			<ButtonContainer variant={"default"} size={"small"} className="gap-3">
-				<button>-</button>
-				<span>1</span>
-				<button>+</button>
-			</ButtonContainer>
+		// <div className="">
+		<div
+			className={buttonVariants({
+				variant: "default",
+				size: "small",
+				className: "col-span-2 flex justify-around items-center",
+			})}
+		>
+			<button>-</button>
+			<span>1</span>
+			<button>+</button>
 		</div>
+		// </div>
 	);
 };
 
