@@ -1,4 +1,4 @@
-import { errorType } from "@/common/types";
+import { errorType } from "@/common/functions/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 let initialState: errorType = {};

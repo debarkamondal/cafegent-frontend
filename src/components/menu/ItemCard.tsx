@@ -37,10 +37,15 @@ const ItemCard: FC<itemProps> = ({
 			<p className="mx-2 row-span-2 col-span-4 text-[0.75rem] font-normal text-left leading-3 text-xs">
 				{description}
 			</p>
-			<span className="self-end text-center col-span-2 font-semibold text-sm">
+			<span className="self-end justify-self-end text-center col-span-2 font-semibold text-sm">
 				&#8377; {price}
 			</span>
-			<AddToCartButton id={id} price={price} name={name} />
+			<AddToCartButton
+				id={id}
+				price={price}
+				name={name}
+				className="justify-self-end m-0"
+			/>
 		</div>
 	);
 };

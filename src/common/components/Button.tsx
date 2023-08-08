@@ -1,13 +1,14 @@
+"use client";
 import React, { FC } from "react";
 import { VariantProps, cva } from "class-variance-authority";
-import { cn } from "@/common/utils";
+import { cn } from "@/common/functions/utils";
 
 const buttonVariants = cva(
 	"flex justify-center align-middle itmes-center mx-auto p-2 font-medium text-primary-100",
 	{
 		variants: {
 			variant: {
-				default: "bg-primary-900 text-primary-300",
+				default: "bg-primary-900",
 				disabled: "bg-gray-400 text-white",
 			},
 			size: {
