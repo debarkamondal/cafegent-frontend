@@ -7,6 +7,7 @@ import { axiosAWS } from "@/common/functions/utils";
 
 const fetchTableData = async (id: string) => {
 	const res = await axiosAWS.get(`table/check/${id}`);
+	console.log(res.data);
 	return res.data;
 };
 
