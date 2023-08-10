@@ -3,7 +3,6 @@ import React, { FC } from "react";
 import { Button, buttonVariants } from "@/common/components/Button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart, removeFromCart } from "@/redux/cartSlice";
-import { cn } from "@/common/functions/utils";
 
 interface addToCartButtonVariant extends React.HTMLAttributes<HTMLDivElement> {
 	id: string;
@@ -25,26 +24,25 @@ const AddToCartButton: FC<addToCartButtonVariant> = ({
 	return (
 		<>
 			{item ? (
-				<div
+				<span
 					className={buttonVariants({
 						variant: "default",
 						size: "small",
-						className: "col-span-2 flex justify-around gap-2 items-center",
+						className:
+							"col-span-2 flex justify-around gap-2 items-center justify-self-end",
 					})}
 				>
 					<button onClick={decreaseQty}>-</button>
 					<span>{item ? item.qty : "Add"}</span>
 					<button onClick={increaseQty}>+</button>
-				</div>
+				</span>
 			) : (
 				<Button
 					className={buttonVariants({
 						variant: "default",
 						size: "small",
-						className: cn(
-							"col-span-2 flex justify-around items-center",
-							props.className
-						),
+						className:
+							"col-span-2 flex justify-around gap-2 items-center justify-self-end",
 					})}
 					onClick={increaseQty}
 				>
